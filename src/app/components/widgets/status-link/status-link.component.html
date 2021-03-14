@@ -1,0 +1,6 @@
+<span class="{{getClass()}}">
+    <a *ngIf="link" class="{{getClass()}}" [routerLink]="[getLink()]">{{getText()}} <img src="../../../../assets/images/{{getImageName()}}" style="width:20px;height:20px;" /></a>
+    <label *ngIf="!link">
+        {{getText()}} <img src="../../../../assets/images/{{getImageName()}}" style="width:20px;height:20px;" />
+    </label>
+</span>
