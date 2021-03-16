@@ -20,7 +20,7 @@ class JavaRunner extends Runner {
     if (extension.toLowerCase() !== ".java") {
       console.log(`${file} is not a java file.`);
     }
-    console.log(`antes de compilar`);
+    // console.log(`antes de compilar`);
     this.compile(file, directory, filename, callback);
   }
 
@@ -71,7 +71,7 @@ class JavaRunner extends Runner {
     argsCompile[0] = directory + "/ParserUtil.java";
     argsCompile[1] = directory + "/Solution.java";
     argsCompile[2] = file;
-    console.log(argsCompile);
+    //console.log(argsCompile);
     const compiler = spawn("javac", argsCompile, options2);
     compiler.stdout.on("data", data => {
       console.log(`stdout: ${data}`);
@@ -84,6 +84,7 @@ class JavaRunner extends Runner {
       if (data === 0) {
         this.execute(filename, options, callback);
       }
+      else console.log("movida");
     });
   }
 

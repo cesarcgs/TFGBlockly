@@ -3,6 +3,7 @@ const fs = require("fs");
 const getDirName = require("path").dirname;
 const path = require("path");
 const ncp = require("ncp").ncp;
+const { ClassGetter } = require("@angular/compiler/src/output/output_ast");
 
 ncp.limit = 16;
 
@@ -92,7 +93,7 @@ module.exports = {
     // create target directory if it doesn't exist.
     mkdirp(target, err => {
       if (err) return callback(err);
-
+      
       ncp(source, target, function(err) {
         if (err) {
           return callback(err);

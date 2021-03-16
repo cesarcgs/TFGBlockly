@@ -41,12 +41,14 @@ module.exports = {
       "solution",
       question
     );
+    var momento = moment().toISOString();
+    momento = momento.replace(/:/g, "_");
     const targetDir = path.resolve(
       `${appRoot}`,
       "server",
       "judgingengine",
       "temp",
-      question + "_" + lang + "_" + moment().toISOString() // 2013-02-04T22:44:30.652Z
+      question + "_" + lang + "_" + momento // 2013-02-04T22:44:30.652Z
     );
 
     // copy source code files
@@ -54,6 +56,7 @@ module.exports = {
       if (err) {
         callback("99", String(err)); // 99, system error
       }
+
 
       const testcaseFile = path.join(targetDir, "testcase.txt");
       // copy test case file
@@ -66,12 +69,12 @@ module.exports = {
           }
           // save the solution to Solution.java
           const sourceFile = path.resolve(targetDir, runner.sourceFile());
-          console.log(`source file: ${sourceFile}`);
-          console.log(`Target dir: ${targetDir}`);
+          //console.log(`source file: ${sourceFile}`);
+          //console.log(`Target dir: ${targetDir}`);
           const filename = path.parse(sourceFile).name; // main
           const extension = path.parse(sourceFile).ext; // .java
-          console.log(`filename: ${filename}`);
-          console.log(`extension: ${extension}`);
+          //console.log(`filename: ${filename}`);
+          //console.log(`extension: ${extension}`);
 
           if (lang == "javascript") {
             // get method name and export it

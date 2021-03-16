@@ -96,7 +96,6 @@ export class AlgorithmQuestionComponent extends BaseComponent {
   }
 
   changeTab(tab) {
-    console.log("ya esta in");
     this.tab = tab;
     this.refresh();
   }
@@ -168,7 +167,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
       toolbox: document.getElementById('toolbox'),
       scrollbars: false
     }); 
-    
+    console.log("ya esta in");
   }
 
   onSave() {

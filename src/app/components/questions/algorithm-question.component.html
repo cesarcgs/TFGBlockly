@@ -69,9 +69,9 @@
         <block type="text_print"></block>
       </xml>
     <form class="form-horizontal" [formGroup]="baseForm">
-      <!-- <div class="form-group">
+      <div class="form-group">
         <div class="col-sm-2">
-          comentar app-widget-language-select [selectedValue]="selectedValue" name="language" formControlName="language" ngDefaultControl></app-widget-language-select>
+        <!-- <-- app-widget-language-select [selectedValue]="selectedValue" name="language" formControlName="language" ngDefaultControl></app-widget-language-select>-->
           <select [(ngModel)]="selectedLang" (change)="onChange($event.target.value)" class="form-control" formControlName="language">
               <option *ngFor="let option of options" [value]="option.value">{{option.name}}</option>
           </select>
@@ -97,7 +97,7 @@
           <app-widget-validation-message [displayError]="isFieldValid('solution3')" errorMsg="Please enter solution">
           </app-widget-validation-message>
         </div>
-      </div> -->
+      </div> 
       <div class="form-group">
         <div class="col-sm-10">
           <input *ngIf="username" type="submit" [disabled]="loading || loading2" class="btn btn-success" (click)="onSave()" value="Save">
