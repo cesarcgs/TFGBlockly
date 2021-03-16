@@ -96,11 +96,6 @@ export class AlgorithmQuestionComponent extends BaseComponent {
   }
 
   changeTab(tab) {
-    console.log("injectando el blocky");
-    this.workspace = Blockly.inject('blocklyDiv', {
-      toolbox: document.getElementById('toolbox'),
-      scrollbars: false
-    }); 
     console.log("ya esta in");
     this.tab = tab;
     this.refresh();
@@ -168,6 +163,12 @@ export class AlgorithmQuestionComponent extends BaseComponent {
           }
         );
     }
+    console.log("injectando el blocky");
+    this.workspace = Blockly.inject('blocklyDiv', {
+      toolbox: document.getElementById('toolbox'),
+      scrollbars: false
+    }); 
+    
   }
 
   onSave() {
