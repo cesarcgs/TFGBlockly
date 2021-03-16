@@ -60,10 +60,18 @@
   </div>
   <hr />
   <div>
+    
+    <div id="blocklyDiv" style="width: 100%; height: 500px">verga</div>
+     <xml id="toolbox" style="display: none">
+        <block type="controls_if"></block>
+        <block type="controls_repeat_ext" disabled="true"></block>
+        <block type="text"></block>
+        <block type="text_print"></block>
+      </xml>
     <form class="form-horizontal" [formGroup]="baseForm">
       <!-- <div class="form-group">
         <div class="col-sm-2">
-          COMENTAR <app-widget-language-select [selectedValue]="selectedValue" name="language" formControlName="language" ngDefaultControl></app-widget-language-select>
+          comentar app-widget-language-select [selectedValue]="selectedValue" name="language" formControlName="language" ngDefaultControl></app-widget-language-select>
           <select [(ngModel)]="selectedLang" (change)="onChange($event.target.value)" class="form-control" formControlName="language">
               <option *ngFor="let option of options" [value]="option.value">{{option.name}}</option>
           </select>
@@ -90,22 +98,6 @@
           </app-widget-validation-message>
         </div>
       </div> -->
-      <div id="blocklyDiv" style="width: 100%; height: 100%"></div>
-      <xml id="toolbox" style="display: none">
-        <category name="Control" colour="120">
-          <block type="controls_if"></block>
-          <block type="controls_repeat_ext" disabled="true"></block>
-        </category>
-        <category name="Text" colour="230">
-          <block type="text"></block>
-          <block type="text_print"></block>
-        </category>
-        <category name="Custom" colour="360">
-          <block type="begin"></block>
-          <block type="move"></block>
-          <block type="end"></block>
-        </category>
-      </xml>
       <div class="form-group">
         <div class="col-sm-10">
           <input *ngIf="username" type="submit" [disabled]="loading || loading2" class="btn btn-success" (click)="onSave()" value="Save">

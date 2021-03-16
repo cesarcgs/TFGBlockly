@@ -4,6 +4,8 @@ import { Question, Submission } from "../../models";
 import { BaseComponent } from "../base.component";
 import { environment } from "../../../environments/environment";
 
+declare var Blockly: any;
+
 @Component({
   selector: "app-algorithm-question",
   styleUrls: ["algorithm-question.component.css"],
@@ -24,7 +26,8 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     imageEndPoint: "",
     toolbar: []
   };
-
+  
+  workspace: any;
   tab;
   _id;
   username;
@@ -38,11 +41,11 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     language: new FormControl(
       "javascript",
       Validators.compose([Validators.required])
-    ),
-    solution1: new FormControl("", Validators.compose([Validators.required])),
-    solution2: new FormControl("", Validators.compose([Validators.required])),
-    solution3: new FormControl("", Validators.compose([Validators.required])),
-    output: new FormControl("", null)
+      ),
+      solution1: new FormControl("", Validators.compose([Validators.required])),
+      solution2: new FormControl("", Validators.compose([Validators.required])),
+      solution3: new FormControl("", Validators.compose([Validators.required])),
+      output: new FormControl("", null)
   });
 
   @Input() sequence: number;
@@ -65,7 +68,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
       name: "Python"
     }
   ];
-
+  
   options_prod = [
     {
       value: "javascript",
@@ -76,7 +79,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
       name: "Python"
     }
   ];
-
+  
   editorOptions1 = { theme: "vs", language: "java" };
   editorOptions2 = { theme: "vs", language: "javascript" };
   editorOptions3 = { theme: "vs", language: "python" };
@@ -85,7 +88,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
   code3: string = "";
   submitId1: string = "";
   submitId2: string = "";
-  submitId3: string = "";
+  submitId3: string = "";  
 
   onChange(language) {
     this.printLog(language);
@@ -93,6 +96,12 @@ export class AlgorithmQuestionComponent extends BaseComponent {
   }
 
   changeTab(tab) {
+    console.log("injectando el blocky");
+    this.workspace = Blockly.inject('blocklyDiv', {
+      toolbox: document.getElementById('toolbox'),
+      scrollbars: false
+    }); 
+    console.log("ya esta in");
     this.tab = tab;
     this.refresh();
   }
@@ -115,6 +124,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
   }
 
   ngOnInit() {
+    
     console.log("environment", environment);
     if (environment.production) {
       this.options = this.options_prod;
