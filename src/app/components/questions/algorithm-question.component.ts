@@ -37,6 +37,8 @@ export class AlgorithmQuestionComponent extends BaseComponent {
   testResult: number; // -1: not submitted, 10: pass, 20: fail
   resultMessage;
   //Create form
+
+  //Borrar
   baseForm = new FormGroup({
     language: new FormControl(
       "javascript",
@@ -53,42 +55,14 @@ export class AlgorithmQuestionComponent extends BaseComponent {
   @Input() description: string;
   @Input() solution: string;
   @Input() hints: string;
-  @Input() options = [];
-  options_dev = [
-    {
-      value: "java",
-      name: "Java"
-    },
-    {
-      value: "javascript",
-      name: "JavaScript"
-    },
-    {
-      value: "python",
-      name: "Python"
-    }
-  ];
-  
-  options_prod = [
-    {
-      value: "javascript",
-      name: "JavaScript"
-    },
-    {
-      value: "python",
-      name: "Python"
-    }
-  ];
-  
-  editorOptions1 = { theme: "vs", language: "java" };
-  editorOptions2 = { theme: "vs", language: "javascript" };
-  editorOptions3 = { theme: "vs", language: "python" };
-  code1: string = "";
-  code2: string = "";
-  code3: string = "";
-  submitId1: string = "";
-  submitId2: string = "";
-  submitId3: string = "";  
+  @Input() options = {
+    value: "python",
+    name: "Python"
+  };
+
+  editorOptions = { theme: "vs", language: "python" };
+  code: string = "";
+  submitId: string = "";  
 
   onChange(language) {
     this.printLog(language);
@@ -120,11 +94,6 @@ export class AlgorithmQuestionComponent extends BaseComponent {
   ngOnInit() {
     
     console.log("environment", environment);
-    if (environment.production) {
-      this.options = this.options_prod;
-    } else {
-      this.options = this.options_dev;
-    }
     this.tab = "description";
     this.testResult = -1;
     this.uniquename = this.route.snapshot.paramMap.get("uniquename");
@@ -148,13 +117,9 @@ export class AlgorithmQuestionComponent extends BaseComponent {
               solution3: question.pythonmain,
               output: ""
             });
-            this.code1 = question.mainfunction;
-            this.code2 = question.jsmain;
-            this.code3 = question.pythonmain;
+            this.code = question.pythonmain;
             this.selectedLang = "javascript";
-            this.submitId1 = question.id1;
-            this.submitId2 = question.id2;
-            this.submitId3 = question.id3;
+            this.submitId = question.id3;
             this.asyncEnd();
           },
           error => {
@@ -180,16 +145,8 @@ export class AlgorithmQuestionComponent extends BaseComponent {
 
     let id = "";
     let solution = "";
-    if (this.selectedLang == "java") {
-      id = this.submitId1;
-      solution = this.code1;
-    } else if (this.selectedLang == "javascript") {
-      id = this.submitId2;
-      solution = this.code2;
-    } else if (this.selectedLang == "python") {
-      id = this.submitId3;
-      solution = this.code3;
-    }
+    id = this.submitId;
+    solution = this.code;
     let submission = new Submission(
       id,
       this.username,
@@ -207,13 +164,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
       //Create question
       this.submissionService.createSubmission(submission).subscribe(
         newsubmission => {
-          if (this.selectedLang == "java") {
-            this.submitId1 = newsubmission._id;
-          } else if (this.selectedLang == "javascript") {
-            this.submitId2 = newsubmission._id;
-          } else if (this.selectedLang == "python") {
-            this.submitId3 = newsubmission._id;
-          }
+          this.submitId = newsubmission._id;
           this.handleSuccess("Your solution has been saved successfully.");
         },
         error => {
@@ -224,13 +175,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
       //Update question
       this.submissionService.updateSubmission(submission).subscribe(
         updatedsubmission => {
-          if (this.selectedLang == "java") {
-            this.submitId1 = updatedsubmission._id;
-          } else if (this.selectedLang == "javascript") {
-            this.submitId2 = updatedsubmission._id;
-          } else if (this.selectedLang == "python") {
-            this.submitId3 = updatedsubmission._id;
-          }
+          this.submitId = updatedsubmission._id;
           this.handleSuccess("Your solution has been updated successfully.");
         },
         error => {
@@ -242,32 +187,25 @@ export class AlgorithmQuestionComponent extends BaseComponent {
 
   onSubmitSolution() {
     this.testResult = -1;
-    if (!this.validate2()) {
+    /*if (!this.validate2()) {
       return;
-    }
+    }*/
 
     //Form is valid, now perform create or update
-    let question = this.baseForm.value;
-    this.printLog(question);
-    let id = this.submitId3;
-    let solution = Blockly.Python.workspaceToCode(this.workspace);
-    /*if (this.selectedLang == "java") {
-      id = this.submitId1;
-      solution = this.code1;
-    } else if (this.selectedLang == "javascript") {
-      id = this.submitId2;
-      solution = this.code2;
-    } else if (this.selectedLang == "python") {
-      id = this.submitId3;
-      solution = this.code3;
-    }*/
+    //let question = this.baseForm.value;
+    //this.printLog(question);
+    let id = this.submitId;
+    //let solution = this.code;
+    let solution = "class Solution(object):\n\t";
+    console.log(Blockly.Python.workspaceToCode(this.workspace));
+    solution = solution + Blockly.Python.workspaceToCode(this.workspace).replaceAll('\n', '\n\t');
     this.printLog(solution);
-    this.printLog(this.submitId3);
+    this.printLog(this.submitId);
     let submission = new Submission(
       id,
       this.username,
       this.uniquename,
-      question.language,
+      "python",
       solution,
       "initial",
       new Date(),
@@ -297,13 +235,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
           this.resultMessage = response.message;
         }
         // reset id to null to avoid update
-        if (this.selectedLang == "java") {
-          this.submitId1 = "";
-        } else if (this.selectedLang == "javascript") {
-          this.submitId2 = "";
-        } else if (this.selectedLang == "python") {
-          this.submitId3 = "";
-        }
+        this.submitId = "";
         this.refresh();
       },
       error => {
