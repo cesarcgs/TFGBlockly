@@ -162,12 +162,10 @@ export class AlgorithmQuestionComponent extends BaseComponent {
           }
         );
     }
-    console.log("injectando el blocky");
     this.workspace = Blockly.inject('blocklyDiv', {
       toolbox: document.getElementById('toolbox'),
       scrollbars: false
     }); 
-    console.log("ya esta in");
   }
 
   onSave() {
@@ -251,9 +249,9 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     //Form is valid, now perform create or update
     let question = this.baseForm.value;
     this.printLog(question);
-    let id = "";
-    let solution = "";
-    if (this.selectedLang == "java") {
+    let id = this.submitId3;
+    let solution = Blockly.Python.workspaceToCode(this.workspace);
+    /*if (this.selectedLang == "java") {
       id = this.submitId1;
       solution = this.code1;
     } else if (this.selectedLang == "javascript") {
@@ -262,7 +260,9 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     } else if (this.selectedLang == "python") {
       id = this.submitId3;
       solution = this.code3;
-    }
+    }*/
+    this.printLog(solution);
+    this.printLog(this.submitId3);
     let submission = new Submission(
       id,
       this.username,
