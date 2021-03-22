@@ -84,7 +84,7 @@ class JavaRunner extends Runner {
       if (data === 0) {
         this.execute(filename, options, callback);
       }
-      else console.log("movida");
+      // else console.log("movida");
     });
   }
 

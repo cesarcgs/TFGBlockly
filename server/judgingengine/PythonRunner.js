@@ -27,7 +27,7 @@ class PythonRunner extends Runner {
     const options = { cwd: directory };
     const argsRun = [];
     argsRun[0] = file;
-    console.log(`options: ${options}`);
+    console.log(options);
     console.log(`argsRun: ${argsRun}`);
     const executor = spawn("python", argsRun, options);
     executor.stdout.on("data", output => {
