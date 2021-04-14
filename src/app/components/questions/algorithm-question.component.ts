@@ -196,9 +196,10 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     //this.printLog(question);
     let id = this.submitId;
     //let solution = this.code;
-    let solution = "class Solution(object):\n\t";
+    let solution = "import sys\nclass Solution(object):\n\tdef main(self):\n\t\tog_stdout = sys.stdout\n\t\tsys.stdout = open('answer.txt', 'a')\n\t\t";
     console.log(Blockly.Python.workspaceToCode(this.workspace));
-    solution = solution + Blockly.Python.workspaceToCode(this.workspace).replaceAll('\n', '\n\t');
+    solution = solution + Blockly.Python.workspaceToCode(this.workspace).replaceAll('\n', '\n\t\t');
+    solution = solution + ("sys.stdout.close()\n\t\tsys.stdout = og_stdout")
     this.printLog(solution);
     this.printLog(this.submitId);
     let submission = new Submission(
