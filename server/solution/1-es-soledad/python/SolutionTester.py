@@ -55,7 +55,7 @@ def main():
     # testresult =  open('testresult.txt', "r")
     # answer =  open('answer.txt', "r")
     if filecmp.cmp("answer.txt", "testresult.txt"):
-        print "[Sucess]Your solution passed all test cases!"
+        print "[Success]Your solution passed all test cases!"
     else:
         print "[Fail]" + content
 

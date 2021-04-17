@@ -14,12 +14,23 @@ def integerListToString(nums, len_of_list=None):
     return json.dumps(nums[:len_of_list])
 
 def main():
-    with open('testcase.txt', "r") as f:
-        content = f.read()
-        lines = f.readlines()
-    i = 0
+	Solution.Solution().main()
+
+	with open('answer.txt', "r") as f:
+		line1 = f.readline()
+		line2 = f.readline()
+		line3 = f.readline()
+		line1 = line1.replace("\n", "")
+		line2 = line2.replace("\n", "")
+		if line1.isdigit() and line2.isdigit() and (line1 == line2) and (len(line3) == 0):	
+			print "[Success]Your solution passed all test cases!"
+		else:
+			print "[Fail]"
     # passall = True
-    # """ while i < len(lines) :
+	#if len(lines) == 3 		
+	#	while i < len(lines) :
+	#		lines
+	#	content = f.readline()
     #     line = lines[i]
     #     s = line.replace("\n","")
     #     if (s == "null") :
@@ -51,13 +62,12 @@ def main():
     #         break
 
     #     i = i + 2 """
-    Solution.Solution().main()
     # testresult =  open('testresult.txt', "r")
     # answer =  open('answer.txt', "r")
-    if filecmp.cmp("answer.txt", "testresult.txt"):
-        print "[Sucess]Your solution passed all test cases!"
-    else:
-        print "[Fail]" + content
+    #if filecmp.cmp("answer.txt", "testresult.txt"):
+    #    print "[Success]Your solution passed all test cases!"
+    #else:
+    #    print "[Fail]" + content
 
 if __name__ == '__main__':
     main()

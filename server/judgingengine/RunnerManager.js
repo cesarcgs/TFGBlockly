@@ -69,8 +69,8 @@ module.exports = {
           }
           // save the solution to Solution.java
           const sourceFile = path.resolve(targetDir, runner.sourceFile());
-          //console.log(`source file: ${sourceFile}`);
-          //console.log(`Target dir: ${targetDir}`);
+          console.log(`source file: ${sourceFile}`);
+          console.log(`Target dir: ${targetDir}`);
           const filename = path.parse(sourceFile).name; // main
           const extension = path.parse(sourceFile).ext; // .java
           //console.log(`filename: ${filename}`);
@@ -87,6 +87,7 @@ module.exports = {
           FileApi.saveFile(sourceFile, solution, () => {
             const testFile = path.resolve(targetDir, runner.testFile());
             const testFileName = path.parse(testFile).name; // main
+            console.log("verga");
             runner.run(testFile, targetDir, testFileName, extension, function(
               status,
               message
