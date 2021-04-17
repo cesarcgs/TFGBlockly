@@ -87,7 +87,6 @@ module.exports = {
           FileApi.saveFile(sourceFile, solution, () => {
             const testFile = path.resolve(targetDir, runner.testFile());
             const testFileName = path.parse(testFile).name; // main
-            console.log("verga");
             runner.run(testFile, targetDir, testFileName, extension, function(
               status,
               message

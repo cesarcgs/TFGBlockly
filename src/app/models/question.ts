@@ -12,6 +12,7 @@ export class Question {
     public difficulty: number,
     public frequency: number,
     public rating: number,
-    public hints: string
+    public hints: string,
+    public parameters: string
   ) {}
 }

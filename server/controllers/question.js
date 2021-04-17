@@ -16,7 +16,8 @@ exports.question_create = function(req, res, next) {
     difficulty: req.body.difficulty,
     frequency: req.body.frequency,
     rating: req.body.rating,
-    hints: req.body.hints
+    hints: req.body.hints,
+    parameters: req.body.parameters
   });
 
   question.save({ new: true }, function(err, question) {

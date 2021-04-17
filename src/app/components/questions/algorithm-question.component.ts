@@ -37,7 +37,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
   testResult: number; // -1: not submitted, 10: pass, 20: fail
   resultMessage;
   //Create form
-
+  
   //Borrar
   baseForm = new FormGroup({
     language: new FormControl(
@@ -48,13 +48,14 @@ export class AlgorithmQuestionComponent extends BaseComponent {
       solution2: new FormControl("", Validators.compose([Validators.required])),
       solution3: new FormControl("", Validators.compose([Validators.required])),
       output: new FormControl("", null)
-  });
-
+    });
+    
+  parameters: string;
   @Input() sequence: number;
   @Input() title: string;
-  @Input() description: string;
   @Input() solution: string;
   @Input() hints: string;
+  @Input() description: string;
   @Input() options = {
     value: "python",
     name: "Python"
@@ -110,6 +111,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
             this.description = question.description;
             this.solution = question.solution;
             this.hints = question.hints;
+            this.parameters = question.parameters;
             this.baseForm.setValue({
               language: "javascript",
               solution1: question.mainfunction,
@@ -196,7 +198,9 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     //this.printLog(question);
     let id = this.submitId;
     //let solution = this.code;
-    let solution = "import sys\nclass Solution(object):\n\tdef main(self):\n\t\tog_stdout = sys.stdout\n\t\tsys.stdout = open('answer.txt', 'a')\n\t\t";
+    this.printLog(this.parameters);
+    let mainParams = this.parameters == "" ? "self" : "self, " + this.parameters;//TODO HACER MAÑANA LO DE UQITAR LOS NONE
+    let solution = "import sys\nclass Solution(object):\n\tdef main(" + mainParams + "):\n\t\tog_stdout = sys.stdout\n\t\tsys.stdout = open('answer.txt', 'a')\n\t\t";
     console.log(Blockly.Python.workspaceToCode(this.workspace));
     solution = solution + Blockly.Python.workspaceToCode(this.workspace).replaceAll('\n', '\n\t\t');
     solution = solution + ("sys.stdout.close()\n\t\tsys.stdout = og_stdout")

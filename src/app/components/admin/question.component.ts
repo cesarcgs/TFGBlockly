@@ -106,6 +106,7 @@ export class QuestionComponent extends BaseComponent {
         title: [null, [Validators.required, Validators.minLength(5)]],
         uniquename: [null, [Validators.required]],
         description: [null, [Validators.required]],
+        parameters: [null, [Validators.required]],
         mainfunction: [null, [Validators.required]],
         jsmain: [null, [Validators.required]],
         pythonmain: [null, [Validators.required]],
@@ -148,7 +149,8 @@ export class QuestionComponent extends BaseComponent {
         frequency: [],
         rating: [],
         hints: [],
-        solution: []
+        solution: [],
+        parameters: []
       });
 
       /*
@@ -203,6 +205,7 @@ export class QuestionComponent extends BaseComponent {
             frequency: question.frequency,
             rating: question.rating,
             hints: question.hints,
+            parameters: question.parameters,
             solution: question.solution || ""
           });
 
@@ -222,6 +225,9 @@ export class QuestionComponent extends BaseComponent {
             Validators.required
           ]);
           this.baseForm.controls["description"].setValidators([
+            Validators.required
+          ]);
+          this.baseForm.controls["parameters"].setValidators([
             Validators.required
           ]);
           this.baseForm.controls["mainfunction"].setValidators([

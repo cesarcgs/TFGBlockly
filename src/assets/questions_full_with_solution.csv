@@ -1,4 +1,4 @@
-_id,sequence,title,description,mainfunction,difficulty,__v,frequency,uniquename,rating,hints,solution,jsmain,pythonmain
+_id,sequence,title,description,mainfunction,difficulty,__v,frequency,uniquename,rating,hints,solution,jsmain,pythonmain,parameters
 "5b424fb51e73e72e0d54f63b",1,"Two Sum","<div class=""question-description__3U1T"" style=""line-height: 24px; padding-top: 10px;""><p style=""margin-bottom: 10px;"">Given an array of integers, return&nbsp;<span style=""font-weight: 700;"">indices</span>&nbsp;of the two numbers such that they add up to a specific target.</p><p style=""margin-bottom: 10px;"">You may assume that each input would have&nbsp;<span style=""font-weight: 700;""><em>exactly</em></span>&nbsp;one solution, and you may not use the&nbsp;<em>same</em>&nbsp;element twice.</p><p style=""margin-bottom: 10px;""><span style=""font-weight: 700;"">Example:</span></p><pre style=""line-height: 1.42857;"">Given nums = [2, 7, 11, 15], target = 9,
 
 Because nums[<span style=""font-weight: 700;"">0</span>] + nums[<span style=""font-weight: 700;"">1</span>] = 2 + 7 = 9,

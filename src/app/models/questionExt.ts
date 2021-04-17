@@ -13,6 +13,7 @@ export class QuestionExt {
     public frequency: number,
     public rating: number,
     public hints: string,
+    public parameters: string,
     // ids for submissions
     public id1: string,
     public id2: string,

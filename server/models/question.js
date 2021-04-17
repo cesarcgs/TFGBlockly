@@ -13,7 +13,8 @@ var QuestionSchema = new Schema({
   difficulty: { type: Number, enum: [10, 20, 30], default: 10 }, // 10: easy, 20: medium, 30: hard
   frequency: { type: Number, required: true },
   rating: { type: Number, required: true },
-  hints: { type: String }
+  hints: { type: String },
+  parameters: {type: String}
 });
 
 // Export the model
