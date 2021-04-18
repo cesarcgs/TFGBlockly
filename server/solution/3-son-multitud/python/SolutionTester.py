@@ -20,9 +20,9 @@ def main():
     i = 0
     Solution.Solution().main()
     if filecmp.cmp("answer.txt", "testresult.txt"):
-        print "[Success]Your solution passed all test cases!"
+        print "[Success] Tu solucion ha superado todos los casos!"
     else:
-        print "[Fail]" + content
-
+        print "[Fail] Tu respuesta no es correcta"
+    
 if __name__ == '__main__':
     main()

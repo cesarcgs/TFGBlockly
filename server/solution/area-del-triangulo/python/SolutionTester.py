@@ -25,9 +25,9 @@ def main():
     test.close()
 
     if filecmp.cmp("answer.txt", "testresult.txt"):
-        print "[Success]Your solution passed all test cases!"
+        print "[Success] Tu solucion ha superado todos los casos!"
     else:
-        print "[Fail]"
-
+        print "[Fail] Tu respuesta no es correcta"
+    
 if __name__ == '__main__':
     main()
