@@ -64,8 +64,6 @@ exports.question_findByKeys = function(req, res, next) {
       id2: "",
       id3: ""
     };
-    console.log(question);
-    console.log(retq);
 
     // get submissions if exist
     if (keys[1]) {

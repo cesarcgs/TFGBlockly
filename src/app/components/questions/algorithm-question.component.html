@@ -369,21 +369,6 @@
 
     <form class="form-horizontal" [formGroup]="baseForm">
       <div class="form-group">
-        <div class="col-sm-2">
-        <!-- <-- app-widget-language-select [selectedValue]="selectedValue" name="language" formControlName="language" ngDefaultControl></app-widget-language-select>-->
-          <select [(ngModel)]="selectedLang" (change)="onChange($event.target.value)" class="form-control" formControlName="language">
-              <option *ngFor="let option of options" [value]="option.value">{{option.name}}</option>
-          </select>
-        </div>
-      </div>
-      <div *ngIf="selectedLang=='python'" class="form-group">
-        <div class="col-sm-12">
-          <ngx-monaco-editor class="solution-code-editor" [options]="editorOptions" [(ngModel)]="code" formControlName="solution"></ngx-monaco-editor>
-          <app-widget-validation-message [displayError]="isFieldValid('solution')" errorMsg="Please enter solution">
-          </app-widget-validation-message>
-        </div>
-      </div> 
-      <div class="form-group">
         <div class="col-sm-10">
           <input *ngIf="username" type="submit" [disabled]="loading || loading2" class="btn btn-success" (click)="onSave()" value="Save">
           <app-widget-loading-image [loading]="isLoading()"></app-widget-loading-image>

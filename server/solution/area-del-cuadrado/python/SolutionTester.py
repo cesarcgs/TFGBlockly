@@ -20,15 +20,15 @@ def main():
         if not line:
             break
         line = line.replace('\n', '')    
-        print(line)
-        Solution.Solution().main(4)
+        Solution.Solution().main(int(line))
 
-    test.close()
 
     if filecmp.cmp("answer.txt", "testresult.txt"):
-        print "[Success]Your solution passed all test cases!"
+        print "[Success] Tu solucion ha superado todos los casos!"
     else:
-        print "[Fail]"
+        print "[Fail] Tu respuesta no es correcta"
+    
+    test.close()
 
 if __name__ == '__main__':
     main()

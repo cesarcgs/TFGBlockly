@@ -200,10 +200,22 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     //let solution = this.code;
     this.printLog(this.parameters);
     let mainParams = this.parameters == "" ? "self" : "self, " + this.parameters;//TODO HACER MAÑANA LO DE UQITAR LOS NONE
-    let solution = "import sys\nclass Solution(object):\n\tdef main(" + mainParams + "):\n\t\tog_stdout = sys.stdout\n\t\tsys.stdout = open('answer.txt', 'a')\n\t\t";
+    let solutionNone = "import sys\nclass Solution(object):\n\tdef main(" + mainParams + "):\n\t\tog_stdout = sys.stdout\n\t\tsys.stdout = open('answer.txt', 'a')\n\t\t";
     console.log(Blockly.Python.workspaceToCode(this.workspace));
-    solution = solution + Blockly.Python.workspaceToCode(this.workspace).replaceAll('\n', '\n\t\t');
-    solution = solution + ("sys.stdout.close()\n\t\tsys.stdout = og_stdout")
+    solutionNone = solutionNone + Blockly.Python.workspaceToCode(this.workspace).replaceAll('\n', '\n\t\t');
+    solutionNone = solutionNone + ("sys.stdout.close()\n\t\tsys.stdout = og_stdout")
+    
+    let solution = "";
+    let found = false;
+    for (const line of solutionNone.split(/[\r\n]+/)){
+      for(const p of this.parameters.split(', ')){
+        if(line.indexOf(p + " = None") != -1) found = true;
+      }
+      if (!found) solution = solution + line + "\n";
+      found = false;
+    }
+
+
     this.printLog(solution);
     this.printLog(this.submitId);
     let submission = new Submission(
