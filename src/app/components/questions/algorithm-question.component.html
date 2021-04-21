@@ -68,12 +68,13 @@
         <block type="controls_if"></block>
         <block type="logic_compare"></block>
         <block type="logic_operation"></block>
+        <block type="logic_operation"></block>
    <!-- <block type="logic_negate"></block>
         <block type="logic_boolean"></block>
         <block type="logic_null"></block>
         <block type="logic_ternary"></block> -->
       </category>
-  <category id="catLoops" colour="120" name="Loops">
+      <category id="catLoops" colour="120" name="Loops">
         <block type="controls_repeat_ext">
           <value name="TIMES">
             <shadow type="math_number">
@@ -199,6 +200,7 @@
       <category id="catText" colour="160" name="Text">
         <block type="text"></block>
         <block type="text_join"></block>
+        <block type="input_variable_int"></block>
         <block type="text_append">
           <value name="TEXT">
             <shadow type="text"></shadow>
@@ -363,10 +365,10 @@
         </block>
       </category>
       <sep></sep>
-      <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
+      <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>x
       <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
     </xml>   
-
+ 
     <form class="form-horizontal" [formGroup]="baseForm">
       <div class="form-group">
         <div class="col-sm-10">
