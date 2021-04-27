@@ -14,16 +14,7 @@ def integerListToString(nums, len_of_list=None):
     return json.dumps(nums[:len_of_list])
 
 def main():
-    test = open("testcase.txt", "r")
-    while True:
-        line = test.readline()
-        if not line:
-            break
-        line = line.replace('\n', '')
-        x = line.split(' ')
-        Solution.Solution().main(int(x[0]), int(x[1]), int(x[2]))
-    test.close()
-
+    Solution.Solution().main(int(x[0]), int(x[1]), int(x[2]))
     if filecmp.cmp("answer.txt", "testresult.txt"):
         print "[Success] Tu solucion ha superado todos los casos!"
     else:
