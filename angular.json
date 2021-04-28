@@ -35,8 +35,7 @@
               "node_modules/blockly/msg/js/es.js",
               "node_modules/blockly/python_compressed.js",
               "node_modules/blockly/blocks_compressed.js",
-              "src/custom_blocks/lectura_de_entrada.js",
-
+              "src/custom_blocks/lectura_de_entrada.js"
            ]
           },
           "configurations": {
