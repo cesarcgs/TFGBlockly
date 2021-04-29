@@ -52,9 +52,6 @@ exports.question_findByKeys = function(req, res, next) {
       uniquename: question.uniquename,
       description: question.description,
       parameters: question.parameters,
-      mainfunction: question.mainfunction,
-      jsmain: question.jsmain,
-      pythonmain: question.pythonmain,
       solution: question.solution,
       difficulty: question.difficulty,
       frequency: question.frequency,
@@ -106,17 +103,14 @@ exports.question_findByKeys = function(req, res, next) {
             for (var i = 0; i < submissions.length; i++) {
               const submission = submissions[i];
               if (submission.language == "java") {
-                retq.mainfunction = submission.solution;
                 if (submission.status == "initial") {
                   retq.id1 = submission._id;
                 }
               } else if (submission.language == "javascript") {
-                retq.jsmain = submission.solution;
                 if (submission.status == "initial") {
                   retq.id2 = submission._id;
                 }
               } else if (submission.language == "python") {
-                retq.pythonmain = submission.solution;
                 if (submission.status == "initial") {
                   retq.id3 = submission._id;
                 }

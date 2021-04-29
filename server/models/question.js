@@ -6,9 +6,6 @@ var QuestionSchema = new Schema({
   sequence: { type: Number, required: true },
   title: { type: String, required: true, max: 50 },
   description: { type: String, required: true },
-  mainfunction: { type: String },
-  jsmain: { type: String },
-  pythonmain: { type: String },
   solution: { type: String },
   difficulty: { type: Number, enum: [10, 20, 30], default: 10 }, // 10: easy, 20: medium, 30: hard
   frequency: { type: Number, required: true },
