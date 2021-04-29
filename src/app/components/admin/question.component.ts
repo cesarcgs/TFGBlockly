@@ -106,7 +106,7 @@ export class QuestionComponent extends BaseComponent {
         title: [null, [Validators.required, Validators.minLength(5)]],
         uniquename: [null, [Validators.required]],
         description: [null, [Validators.required]],
-        parameters: [null, [Validators.required]],
+        parameters: ["none", [Validators.required]],
         difficulty: [10, [Validators.required]],
         frequency: [
           null,
