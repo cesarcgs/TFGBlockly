@@ -392,8 +392,12 @@ export class AlgorithmQuestionComponent extends BaseComponent {
           }
         );
     }
+    // console.log(this.parameters);
+    // if(this.parameters != "none") {
+    //   this.toolbox = this.parameters;
+    // }
     this.workspace = Blockly.inject('blocklyDiv', {
-      toolbox: this.toolbox,
+      toolbox: this.toolbox, 
       scrollbars: false
     }); 
   }

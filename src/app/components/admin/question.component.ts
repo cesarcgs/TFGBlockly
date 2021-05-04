@@ -184,7 +184,6 @@ export class QuestionComponent extends BaseComponent {
       });*/
       this.questionService.getQuestionById(this._id).subscribe(
         question => {
-          console.log(question);
           this.baseForm.setValue({
             _id: question._id,
             sequence: question.sequence,
