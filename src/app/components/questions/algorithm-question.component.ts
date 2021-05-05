@@ -28,7 +28,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
   };
   
   toolbox = `<xml id="toolbox" style="display: none">
-  <category id="catLogic" colour="210" name="Logic">
+  <category id="catLogic" colour="210" name="Lógica">
     <block type="controls_if"></block>
     <block type="logic_compare"></block>
     <block type="logic_operation"></block>
@@ -38,7 +38,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     <block type="logic_null"></block>
     <block type="logic_ternary"></block> -->
   </category>
-  <category id="catLoops" colour="120" name="Loops">
+  <category id="catLoops" colour="120" name="Bucles">
     <block type="controls_repeat_ext">
       <value name="TIMES">
         <shadow type="math_number">
@@ -67,7 +67,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     <block type="controls_forEach"></block>
     <block type="controls_flow_statements"></block>
   </category> 
-  <category id="catMath" colour="230" name="Math">
+  <category id="catMath" colour="230" name="Matemáticas">
     <block type="math_number"></block>
     <block type="math_arithmetic">
       <value name="A">
@@ -161,7 +161,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     </block>
     <block type="math_random_float"></block>
   </category>
-  <category id="catText" colour="160" name="Text">
+  <category id="catText" colour="160" name="Texto">
     <block type="text"></block>
     <block type="text_join"></block>
     <block type="text_append">
@@ -242,7 +242,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     <block type="input_variable_int"></block>
     <block type="input_variable_string"></block>
   </category>
-  <category id="catLists" colour="260" name="Lists">
+  <category id="catLists" colour="260" name="Listas">
     <block type="lists_create_with">
       <mutation items="0"></mutation>
     </block>
@@ -295,7 +295,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
   </category>
   <sep></sep>
   <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>x
-  <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
+  <category id="catFunctions" colour="290" custom="PROCEDURE" name="Funciones"></category>
 </xml>`;
 
   workspace: any;
@@ -363,7 +363,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     }
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     
     console.log("environment", environment);
     this.tab = "description";
@@ -383,8 +383,15 @@ export class AlgorithmQuestionComponent extends BaseComponent {
             this.solution = question.solution;
             this.hints = question.hints;
             this.parameters = question.parameters;
-            //this.selectedLang = "javascript";
             this.submitId = question.id3;
+
+            if(this.parameters != "none") {
+              this.toolbox = this.parameters;
+            }
+            this.workspace = Blockly.inject('blocklyDiv', {
+              toolbox: this.toolbox, 
+              scrollbars: false
+            }); 
             this.asyncEnd();
           },
           error => {
@@ -392,14 +399,6 @@ export class AlgorithmQuestionComponent extends BaseComponent {
           }
         );
     }
-    // console.log(this.parameters);
-    // if(this.parameters != "none") {
-    //   this.toolbox = this.parameters;
-    // }
-    this.workspace = Blockly.inject('blocklyDiv', {
-      toolbox: this.toolbox, 
-      scrollbars: false
-    }); 
   }
 
   onSave() {

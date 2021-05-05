@@ -1,8 +1,8 @@
 <div class="container">
-  <h2>Database</h2>
+  <h2>Base de Datos</h2>
   <div class="row">
     <div class="col-sm-2">
-      <label for="sel1">Select one collection:</label>
+      <label for="sel1">Elige una coleción:</label>
     </div>
     <div class="col-sm-2">
       <select [(ngModel)]="selectedValue" (change)="onChange($event.target.value)" class="form-control">
@@ -10,28 +10,28 @@
       </select>
     </div>
     <div class="col-sm-1">
-      <button type="button" [disabled]="loading || collection=='noselect'" class="btn btn-info" (click)="refresh()"><i class="fa fa-refresh"></i> Refresh</button>
+      <button type="button" [disabled]="loading || collection=='noselect'" class="btn btn-info" (click)="refresh()"><i class="fa fa-refresh"></i> Recargar</button>
     </div>
     <div class="col-sm-3">
     </div>
     <div class="col-sm-2">
-      <button type="button" [disabled]="loading || collection=='noselect'" class="btn btn-info" (click)="openModal(uploadDlg)"><i class="fa fa-file-excel-o"></i> Import with CSV</button>
+      <button type="button" [disabled]="loading || collection=='noselect'" class="btn btn-info" (click)="openModal(uploadDlg)"><i class="fa fa-file-excel-o"></i> Importar CSV</button>
     </div>
     <div class="col-sm-2">
-      <button type="button" [disabled]="loading || collection=='noselect' || !hasData()" class="btn btn-info" (click)="exportCSV()"><i class="fa fa-file-excel-o"></i> Export to CSV</button>
+      <button type="button" [disabled]="loading || collection=='noselect' || !hasData()" class="btn btn-info" (click)="exportCSV()"><i class="fa fa-file-excel-o"></i> Exportar CSV</button>
     </div>
   </div>
   <hr/>
   <table *ngIf="collection=='users'" class="table table-striped">
     <thead>
       <tr>
-        <th>User ID</th>
-        <th>User Name</th>
+        <th>ID del Usuario</th>
+        <th>Nombre de Usuario</th>
         <th>Email</th>
-        <th>Salt</th>
-        <th>Role</th>
-        <th>Time Created</th>
-        <th>Operations</th>
+        <th>Contraseña</th>
+        <th>Rol</th>
+        <th>Fecha de creación</th>
+        <th>Operaciones</th>
       </tr>
     </thead>
     <tbody>
@@ -51,13 +51,13 @@
   <table *ngIf="collection=='questions'" class="table table-striped">
     <thead>
       <tr>
-        <th>Question ID</th>
-        <th>Sequence</th>
-        <th>Title</th>
-        <th>Difficulty</th>
-        <th>Frequency</th>
+        <th>ID del Problema</th>
+        <th>#</th>
+        <th>Título</th>
+        <th>Dificultad</th>
+        <th>Frecuencia</th>
         <th>Rating</th>
-        <th>Operations</th>
+        <th>Operaciones</th>
       </tr>
     </thead>
     <tbody>
@@ -68,9 +68,8 @@
         <td>{{question.difficulty}}</td>
         <td>{{question.frequency}}</td>
         <td>{{question.rating}}</td>
-        <td>{{question.parameters}}</td>
         <td>
-          <button type="button" class="btn btn-danger" (click)="delete('questions', question._id)">Delete</button>
+          <button type="button" class="btn btn-danger" (click)="delete('questions', question._id)">Borrar</button>
         </td>
       </tr>
     </tbody>
@@ -78,16 +77,16 @@
   <table *ngIf="collection=='submissions'" class="table table-striped">
     <thead>
       <tr>
-        <th>Submission ID</th>
-        <th>User Name</th>
-        <th>Question Name</th>
+        <th>ID de la Entrega</th>
+        <th>Nombre de Usuario</th>
+        <th>Nombre del Problema</th>
         <th>Language</th>
-        <th>Solution</th>
-        <th>Status</th>
+        <th>Solución</th>
+        <th>Estado</th>
         <th>Time Updated</th>
-        <th>Time Submitted</th>
-        <th>Runtime</th>
-        <th>Operations</th>
+        <th>Fecha de entrega</th>
+        <th>Tiempo de ejecución</th>
+        <th>Operaciones</th>
       </tr>
     </thead>
     <tbody>
@@ -102,7 +101,7 @@
         <td>{{submission.timesubmitted}}</td>
         <td>{{submission.runtime}}</td>
         <td>
-          <button type="button" class="btn btn-danger" (click)="delete('submissions', submission._id)">Delete</button>
+          <button type="button" class="btn btn-danger" (click)="delete('submissions', submission._id)">Borrar</button>
         </td>
       </tr>
     </tbody>
@@ -110,20 +109,20 @@
   <ng-template #uploadDlg>
     <form [formGroup]="uploadForm" enctype="multipart/form-data">
       <div class="modal-header">
-        <h3 class="modal-title pull-left">Import Data</h3>
+        <h3 class="modal-title pull-left">Importar Datos</h3>
         <button type="button" class="close pull-right" aria-label="Close" (click)="clearFile()">
                   <span aria-hidden="true">&times;</span>
                 </button>
       </div>
       <div class="modal-body">
         <div class="form-group" style="padding:10px 50px;">
-          <h4>Select CSV File</h4>
+          <h4>Selecciona archivo CSV</h4>
           <div class="input-group">
             <span class="input-group-btn">
-                  <button class="btn btn-default btn-choose" (click)="choose()" type="button">Choose</button>
+                  <button class="btn btn-default btn-choose" (click)="choose()" type="button">Selecciona</button>
                   <input type='file' id="upload" (change)="onFileChange($event)" style='visibility:hidden; height:0'>
               </span>
-            <input type="text" readonly class="form-control" placeholder='Choose a file...' [value]="filename" />
+            <input type="text" readonly class="form-control" placeholder='Elige un archivo...' [value]="filename" />
             <span class="input-group-btn">
                   <button type="button" class="btn btn-warning" (click)="clearFile()">Reset</button>
               </span>
@@ -131,9 +130,9 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" [disabled]="loading" class="btn btn-primary" (click)="confirm()">Upload</button>
+        <button type="submit" [disabled]="loading" class="btn btn-primary" (click)="confirm()">Subir</button>
         <app-widget-loading-image [loading]="loading"></app-widget-loading-image>
-        <button type="button" class="btn btn-default" (click)="decline()">Cancel</button>
+        <button type="button" class="btn btn-default" (click)="decline()">Cancelar</button>
       </div>
     </form>
   </ng-template>
