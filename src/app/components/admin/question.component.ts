@@ -117,15 +117,6 @@ export class QuestionComponent extends BaseComponent {
             Validators.max(100)
           ]
         ],
-        rating: [
-          0,
-          [
-            Validators.required,
-            Validators.pattern("[0-9]+"),
-            Validators.min(0),
-            Validators.max(5)
-          ]
-        ],
         hints: [],
         solution: []
       });
@@ -141,7 +132,6 @@ export class QuestionComponent extends BaseComponent {
         description: [],
         difficulty: [],
         frequency: [],
-        rating: [],
         hints: [],
         solution: [],
         parameters: []
@@ -192,7 +182,6 @@ export class QuestionComponent extends BaseComponent {
             description: question.description,
             difficulty: question.difficulty,
             frequency: question.frequency,
-            rating: question.rating,
             hints: question.hints,
             parameters: question.parameters,
             solution: question.solution || ""
@@ -227,12 +216,6 @@ export class QuestionComponent extends BaseComponent {
             Validators.pattern("[0-9]+"),
             Validators.min(0),
             Validators.max(100)
-          ]);
-          this.baseForm.controls["rating"].setValidators([
-            Validators.required,
-            Validators.pattern("[0-9]+"),
-            Validators.min(0),
-            Validators.max(5)
           ]);
           this.selectedValue = question.difficulty;
           //this.htmlContent = question.description;

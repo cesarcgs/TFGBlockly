@@ -56,7 +56,6 @@
         <th>Título</th>
         <th>Dificultad</th>
         <th>Frecuencia</th>
-        <th>Rating</th>
         <th>Operaciones</th>
       </tr>
     </thead>
@@ -67,7 +66,6 @@
         <td>{{question.title}}</td>
         <td>{{question.difficulty}}</td>
         <td>{{question.frequency}}</td>
-        <td>{{question.rating}}</td>
         <td>
           <button type="button" class="btn btn-danger" (click)="delete('questions', question._id)">Borrar</button>
         </td>
@@ -80,7 +78,6 @@
         <th>ID de la Entrega</th>
         <th>Nombre de Usuario</th>
         <th>Nombre del Problema</th>
-        <th>Language</th>
         <th>Solución</th>
         <th>Estado</th>
         <th>Time Updated</th>
@@ -94,7 +91,6 @@
         <td>{{submission._id}}</td>
         <td>{{submission.username}}</td>
         <td>{{submission.questionname}}</td>
-        <td>{{submission.language}}</td>
         <td>{{submission.solution}}</td>
         <td>{{submission.status}}</td>
         <td>{{submission.timeupdated}}</td>

@@ -31,7 +31,6 @@
             <th>Fecha de Entrega</th>
             <th>Estado</th>
             <th>Tiempo de ejecución</th>
-            <th>Language</th>
           </tr>
         </thead>
         <tbody>
@@ -42,7 +41,6 @@
               <app-widget-status-link link="../../submission/{{submission._id}}" [testResult]="submission.status"></app-widget-status-link>
             </td>
             <td><span *ngIf="submission.status=='pass'">{{submission.runtime}} ms</span><span *ngIf="submission.status=='fail'">N/A</span></td>
-            <td>{{submission.language}}</td>
           </tr>
         </tbody>
       </table>

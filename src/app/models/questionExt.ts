@@ -8,7 +8,6 @@ export class QuestionExt {
     public solution: string,
     public difficulty: number,
     public frequency: number,
-    public rating: number,
     public hints: string,
     public parameters: string,
     // ids for submissions

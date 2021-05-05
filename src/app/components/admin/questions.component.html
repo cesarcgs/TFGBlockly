@@ -10,7 +10,6 @@
         <th>Título</th>
         <th>dificultad</th>
         <th>Frecuencia</th>
-        <th>Rating</th>
         <th>Operaciones</th>
       </tr>
     </thead>
@@ -24,9 +23,6 @@
         </td>
         <td>
           <app-widget-frequency-bar [frequency]="[question.frequency]"></app-widget-frequency-bar>
-        </td>
-        <td>
-          <app-widget-rating-bar [rating]="[question.rating]"></app-widget-rating-bar>
         </td>
         <td>
           <button type="button" class="btn btn-primary" [routerLink]="['/admin/question', question._id ]">Editar</button>

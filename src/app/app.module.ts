@@ -40,13 +40,11 @@ import {
   RoleSelectComponent,
   WysiwygEditorComponent,
   CodeEditorComponent,
-  RatingInputComponent,
   ProgressBarComponent,
   LanguageSelectComponent,
   StatusImageComponent,
   StatusLinkComponent,
   ResultPanelComponent,
-  RatingBarComponent
 } from "./components/";
 
 // services
@@ -101,13 +99,11 @@ import { appRoutes } from "./app.route";
     RoleSelectComponent,
     WysiwygEditorComponent,
     CodeEditorComponent,
-    RatingInputComponent,
     ProgressBarComponent,
     LanguageSelectComponent,
     StatusImageComponent,
     StatusLinkComponent,
     ResultPanelComponent,
-    RatingBarComponent
   ],
   imports: [
     BrowserModule,

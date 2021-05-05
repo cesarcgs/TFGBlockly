@@ -55,7 +55,6 @@ exports.question_findByKeys = function(req, res, next) {
       solution: question.solution,
       difficulty: question.difficulty,
       frequency: question.frequency,
-      rating: question.rating,
       hints: question.hints,
       id1: "",
       id2: "",
@@ -85,38 +84,36 @@ exports.question_findByKeys = function(req, res, next) {
               username: "$latest.username",
               questionname: "$latest.questionname",
               solution: "$latest.solution",
-              language: "$latest.language",
               status: "$latest.status",
               timeupdated: "$latest.timeupdated",
               timesubmitted: "$latest.timesubmitted",
               runtime: "$latest.runtime"
             }
-          },
-          { $sort: { language: 1 } }
+          }
         ],
         function(err, submissions) {
           if (err) {
             return next(err);
           }
-          if (submissions) {
-            // replace the solution in question with user's submission
-            for (var i = 0; i < submissions.length; i++) {
-              const submission = submissions[i];
-              if (submission.language == "java") {
-                if (submission.status == "initial") {
-                  retq.id1 = submission._id;
-                }
-              } else if (submission.language == "javascript") {
-                if (submission.status == "initial") {
-                  retq.id2 = submission._id;
-                }
-              } else if (submission.language == "python") {
-                if (submission.status == "initial") {
-                  retq.id3 = submission._id;
-                }
-              }
-            }
-          }
+          // if (submissions) {
+          //   // replace the solution in question with user's submission
+          //   for (var i = 0; i < submissions.length; i++) {
+          //     const submission = submissions[i];
+          //     if (submission.language == "java") {
+          //       if (submission.status == "initial") {
+          //         retq.id1 = submission._id;
+          //       }
+          //     } else if (submission.language == "javascript") {
+          //       if (submission.status == "initial") {
+          //         retq.id2 = submission._id;
+          //       }
+          //     } else if (submission.language == "python") {
+          //       if (submission.status == "initial") {
+          //         retq.id3 = submission._id;
+          //       }
+          //     }
+          //   }
+          // }
           //console.log(retq.id1);
           //console.log(retq);
           res.status(200).send(retq);
@@ -135,7 +132,6 @@ exports.submission_create = function(req, res, next) {
   var submission = new Submission({
     username: req.body.username,
     questionname: req.body.questionname,
-    language: req.body.language,
     solution: req.body.solution,
     status: "initial", // not submitted -> just created
     timeupdated: moment(new Date(Date.now())),
@@ -166,7 +162,6 @@ exports.submission_update = function(req, res, next) {
   var upd = {
     username: req.body.username,
     questionname: req.body.questionname,
-    language: req.body.language,
     solution: req.body.solution,
     status: "initial",
     timeupdated: moment(new Date(Date.now()))
@@ -211,7 +206,7 @@ exports.submission_findByKeys = function(req, res, next) {
 
   // find the latest one with the given user name, quenstion name and language
   Submission.findOne(
-    { username: keys[0], questionname: keys[1], language: keys[2] },
+    { username: keys[0], questionname: keys[1] },
     null,
     { sort: { timecreated: -1 } },
     function(err, submission) {
@@ -268,7 +263,6 @@ exports.submission_run = function(req, res, next) {
   var newsubmit = new Submission({
     username: req.body.username,
     questionname: req.body.questionname,
-    language: req.body.language,
     solution: req.body.solution,
     status: "initial", // not submitted -> just created
     timeupdated: moment(new Date(Date.now())),
@@ -282,7 +276,6 @@ exports.submission_run = function(req, res, next) {
     {
       username: newsubmit.username,
       questionname: newsubmit.questionname,
-      language: newsubmit.language,
       status: "initial"
     },
     function(err, submission) {
@@ -323,7 +316,6 @@ function run(req, res, next, submission) {
   // 2. Then, run the solution to get the test result
   RunnerManager.run(
     submission.questionname,
-    submission.language,
     submission.solution,
     function(status, message) {
       const result = {

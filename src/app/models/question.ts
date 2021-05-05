@@ -8,7 +8,6 @@ export class Question {
     public solution: string,
     public difficulty: number,
     public frequency: number,
-    public rating: number,
     public hints: string,
     public parameters: string
   ) {}

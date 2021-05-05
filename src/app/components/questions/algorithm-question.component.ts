@@ -294,7 +294,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     <block type="lists_sort"></block>
   </category>
   <sep></sep>
-  <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>x
+  <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
   <category id="catFunctions" colour="290" custom="PROCEDURE" name="Funciones"></category>
 </xml>`;
 
@@ -336,11 +336,6 @@ export class AlgorithmQuestionComponent extends BaseComponent {
   code: string = "";
   submitId: string = "";  
 
-  /* onChange(language) {
-    this.printLog(language);
-    this.selectedLang = language;
-  }
- */
   changeTab(tab) {
     this.tab = tab;
     this.refresh();
@@ -419,7 +414,6 @@ export class AlgorithmQuestionComponent extends BaseComponent {
       id,
       this.username,
       this.uniquename,
-      question.language,
       solution,
       "initial",
       new Date(),
@@ -486,7 +480,6 @@ export class AlgorithmQuestionComponent extends BaseComponent {
       id,
       this.username,
       this.uniquename,
-      "python",
       solution,
       "initial",
       new Date(),

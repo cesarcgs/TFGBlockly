@@ -12,7 +12,6 @@ exports.question_create = function(req, res, next) {
     solution: req.body.solution,
     difficulty: req.body.difficulty,
     frequency: req.body.frequency,
-    rating: req.body.rating,
     hints: req.body.hints,
     parameters: req.body.parameters
   });
