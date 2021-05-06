@@ -5,7 +5,6 @@ export class Submission {
     public questionname: string,
     public solution: string,
     public status: string, // initial: not submitted, pass, fail
-    public timeupdated: Date,
     public timesubmitted: Date,
     public runtime: number
   ) {}

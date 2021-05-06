@@ -10,7 +10,6 @@ var SubmissionSchema = new Schema({
     enum: ["initial", "pass", "fail"],
     default: "initial"
   },
-  timeupdated: { type: Date, default: Date.now },
   timesubmitted: { type: Date },
   runtime: { type: Number, default: 0 }
 });

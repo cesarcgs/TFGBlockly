@@ -417,7 +417,6 @@ export class AlgorithmQuestionComponent extends BaseComponent {
       solution,
       "initial",
       new Date(),
-      null,
       0
     );
     this.printLog(submission);
@@ -483,7 +482,6 @@ export class AlgorithmQuestionComponent extends BaseComponent {
       solution,
       "initial",
       new Date(),
-      null,
       0
     );
     this.printLog(submission);

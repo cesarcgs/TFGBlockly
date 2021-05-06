@@ -76,7 +76,7 @@ exports.question_findByKeys = function(req, res, next) {
       Submission.aggregate(
         [
           { $match: { questionname: keys[0], username: keys[1] } },
-          { $sort: { timeupdated: -1 } },
+          { $sort: { timesubmitted: -1 } },
           { $group: { _id: "$language", latest: { $first: "$$ROOT" } } },
           {
             $project: {
@@ -85,7 +85,6 @@ exports.question_findByKeys = function(req, res, next) {
               questionname: "$latest.questionname",
               solution: "$latest.solution",
               status: "$latest.status",
-              timeupdated: "$latest.timeupdated",
               timesubmitted: "$latest.timesubmitted",
               runtime: "$latest.runtime"
             }
@@ -134,7 +133,6 @@ exports.submission_create = function(req, res, next) {
     questionname: req.body.questionname,
     solution: req.body.solution,
     status: "initial", // not submitted -> just created
-    timeupdated: moment(new Date(Date.now())),
     timesubmitted: null,
     runtime: 0
   });
@@ -164,7 +162,6 @@ exports.submission_update = function(req, res, next) {
     questionname: req.body.questionname,
     solution: req.body.solution,
     status: "initial",
-    timeupdated: moment(new Date(Date.now()))
   };
 
   Submission.findOne({ _id: req.params.id }, function(err, submission) {
@@ -265,7 +262,6 @@ exports.submission_run = function(req, res, next) {
     questionname: req.body.questionname,
     solution: req.body.solution,
     status: "initial", // not submitted -> just created
-    timeupdated: moment(new Date(Date.now())),
     timesubmitted: moment(new Date(Date.now())),
     runtime: 0
   });
@@ -294,7 +290,6 @@ exports.submission_run = function(req, res, next) {
       } else {
         // Update solution
         submission.solution = newsubmit.solution;
-        submission.timeupdated = moment(new Date(Date.now()));
         Submission.findByIdAndUpdate(
           submission._id,
           { $set: submission },

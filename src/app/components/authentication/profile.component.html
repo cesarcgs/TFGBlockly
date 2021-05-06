@@ -7,9 +7,9 @@
         <div class="panel-heading">Mi perfil</div>
         <div class="panel-body">
           <div class="form-group" [ngClass]="displayFieldCss('username')">
-            <label class="control-label col-sm-2 required" for="username">Nombre de usuario:</label>
+            <label class="control-label col-sm-2" for="username">Nombre de usuario:</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" name="username" placeholder="Enter user name" formControlName="username">
+              <input type="text" class="form-control" name="username" placeholder="Introduce nombre de usuario" formControlName="username" disabled>
               <app-widget-validation-message [displayError]="isFieldValid('username')" errorMsg="El nombre debe tener al menos 3 caracteres">
               </app-widget-validation-message>
             </div>
@@ -17,7 +17,7 @@
           <div class="form-group" [ngClass]="displayFieldCss('email')">
             <label class="control-label col-sm-2 required" for="email">Email:</label>
             <div class="col-sm-4">
-              <input type="email" class="form-control" name="email" placeholder="Enter email" formControlName="email">
+              <input type="email" class="form-control" name="email" placeholder="Introduce tu email" formControlName="email">
               <app-widget-validation-message [displayError]="isFieldValid('email')" errorMsg="Por favor, introduce un email válido">
               </app-widget-validation-message>
             </div>
