@@ -1,17 +1,16 @@
 <div class="container">
-  <h2>Questions</h2>
-  <button type="button" class="btn btn-info" routerLink="/admin/question">Create Question</button>
+  <h2>Problemas</h2>
+  <button type="button" class="btn btn-info" routerLink="/admin/question">Crear nuevo problema</button>
   <hr/>
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Question ID</th>
-        <th>Sequence</th>
-        <th>Title</th>
-        <th>Difficulty</th>
-        <th>Frequency</th>
-        <th>Rating</th>
-        <th>Operations</th>
+        <th>ID del problema</th>
+        <th>#</th>
+        <th>Título</th>
+        <th>dificultad</th>
+        <th>Frecuencia</th>
+        <th>Operaciones</th>
       </tr>
     </thead>
     <tbody>
@@ -26,11 +25,8 @@
           <app-widget-frequency-bar [frequency]="[question.frequency]"></app-widget-frequency-bar>
         </td>
         <td>
-          <app-widget-rating-bar [rating]="[question.rating]"></app-widget-rating-bar>
-        </td>
-        <td>
-          <button type="button" class="btn btn-primary" [routerLink]="['/admin/question', question._id ]">Edit</button>
-          <button type="button" class="btn btn-danger" (click)="openModal(confirmDlg, question._id)">Delete</button>
+          <button type="button" class="btn btn-primary" [routerLink]="['/admin/question', question._id ]">Editar</button>
+          <button type="button" class="btn btn-danger" (click)="openModal(confirmDlg, question._id)">Borrar</button>
         </td>
       </tr>
     </tbody>
@@ -43,7 +39,7 @@
               </button>
     </div>
     <div class="modal-body">
-      <p>Are you sure to delete this question?</p>
+      <p>¿Estás seguro de que quieres borrar este problema?</p>
     </div>
     <div class="modal-footer">
       <button type="button" [disabled]="loading" class="btn btn-default" (click)="confirm()">Yes</button>

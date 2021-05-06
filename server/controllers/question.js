@@ -9,14 +9,11 @@ exports.question_create = function(req, res, next) {
     title: req.body.title,
     uniquename: req.body.uniquename,
     description: req.body.description,
-    mainfunction: req.body.mainfunction,
-    jsmain: req.body.jsmain,
-    pythonmain: req.body.pythonmain,
     solution: req.body.solution,
     difficulty: req.body.difficulty,
     frequency: req.body.frequency,
-    rating: req.body.rating,
-    hints: req.body.hints
+    hints: req.body.hints,
+    parameters: req.body.parameters
   });
 
   question.save({ new: true }, function(err, question) {

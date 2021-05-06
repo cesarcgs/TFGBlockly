@@ -1,34 +1,34 @@
 <div class="container">
-  <h2>Change Password</h2>
+  <h2>Cambiar Contraseña</h2>
   <hr />
   <form class="form-horizontal" [formGroup]="baseForm" (ngSubmit)="onSubmit()">
     <div class="form-group" [ngClass]="displayFieldCss('password')">
-      <label class="control-label col-sm-2 required" for="password">Old Password:</label>
+      <label class="control-label col-sm-2 required" for="password">Antigua contraseña:</label>
       <div class="col-sm-4">
-        <input type="password" class="form-control" name="password" placeholder="Enter old password" formControlName="password">
-        <app-widget-validation-message [displayError]="isFieldValid('password')" errorMsg="Please enter your old password">
+        <input type="password" class="form-control" name="password" placeholder="Introduce la antigua contraseña" formControlName="password">
+        <app-widget-validation-message [displayError]="isFieldValid('password')" errorMsg="Por favor, introduce tu antigua contraseña">
         </app-widget-validation-message>
       </div>
     </div>
     <div class="form-group" [ngClass]="displayFieldCss('newpwd')">
-      <label class="control-label col-sm-2 required" for="newpwd">New Password:</label>
+      <label class="control-label col-sm-2 required" for="newpwd">Nueva Contraseña:</label>
       <div class="col-sm-4">
-        <input type="password" class="form-control" name="newpwd" placeholder="Enter new password" formControlName="newpwd">
-        <app-widget-validation-message [displayError]="isFieldValid('newpwd')" errorMsg="Please enter the new password with at least 6 characters">
+        <input type="password" class="form-control" name="newpwd" placeholder="Introduce la nueva contraseña" formControlName="newpwd">
+        <app-widget-validation-message [displayError]="isFieldValid('newpwd')" errorMsg="Por favor, introduce la nueva contraseña de al menos 6 caracteres">
         </app-widget-validation-message>
       </div>
     </div>
     <div class="form-group" [ngClass]="displayFieldCss('confirmpwd')">
-      <label class="control-label col-sm-2 required" for="confirmpwd">Confirm Password:</label>
+      <label class="control-label col-sm-2 required" for="confirmpwd">Confirma la Contraseña:</label>
       <div class="col-sm-4">
-        <input type="password" class="form-control" name="confirmpwd" placeholder="Enter confirm password" formControlName="confirmpwd">
-        <app-widget-validation-message [displayError]="isFieldValid('confirmpwd')" errorMsg="Confirm password is not same with the new password">
+        <input type="password" class="form-control" name="confirmpwd" placeholder="Confrima la nueva contraseña" formControlName="confirmpwd">
+        <app-widget-validation-message [displayError]="isFieldValid('confirmpwd')" errorMsg="La contraseña no coincide">
         </app-widget-validation-message>
       </div>
     </div>
     <div class="form-group">
       <div class="col-md-offset-2 col-md-10">
-        <button type="submit" [disabled]="loading" class="btn btn-success">Change password</button>
+        <button type="submit" [disabled]="loading" class="btn btn-success">Cambiar contraseña</button>
         <app-widget-loading-image [loading]="isLoading()"></app-widget-loading-image>
       </div>
     </div>

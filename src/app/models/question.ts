@@ -5,13 +5,10 @@ export class Question {
     public sequence: number,
     public title: string,
     public description: string,
-    public mainfunction: string,
-    public jsmain: string,
-    public pythonmain: string,
     public solution: string,
     public difficulty: number,
     public frequency: number,
-    public rating: number,
-    public hints: string
+    public hints: string,
+    public parameters: string
   ) {}
 }
