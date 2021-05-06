@@ -297,7 +297,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
   <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
   <category id="catFunctions" colour="290" custom="PROCEDURE" name="Funciones"></category>
 </xml>`;
-
+  userResult: string;
   workspace: any;
   tab;
   _id;
@@ -462,17 +462,6 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     solution = solution + Blockly.Python.workspaceToCode(this.workspace).replaceAll('\n', '\n\t\t');
     solution = solution + ("sys.stdout.close()\n\t\tsys.stdout = og_stdout\n\t\tf.close()")
     
-    // let solution = "";
-    // let found = false;
-    // for (const line of solutionNone.split(/[\r\n]+/)){
-    //   for(const p of this.parameters.split(', ')){
-    //     if(line.indexOf(p + " = None") != -1) found = true;
-    //   }
-    //   if (!found) solution = solution + line + "\n";
-    //   found = false;
-    // }
-
-
     this.printLog(solution);
     this.printLog(this.submitId);
     let submission = new Submission(
@@ -490,21 +479,20 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     this.submissionService.submitSolution(submission).subscribe(
       response => {
         this.printLog(response);
-        /*
-        this.baseForm.setValue({
-          language: submission.language,
-          solution: submission.solution,
-          output: response.message
-          //status: submission.status
-        });*/
-        if (response.status === "pass") {
-          this.handleSuccess2(response.message);
-          this.testResult = 10;
-          this.resultMessage = response.message;
-        } else {
-          this.handleError2(response.message);
-          this.testResult = 20;
-          this.resultMessage = response.message;
+
+        if (response.status === "pass") {//si ha acertado
+            this.userResult = response.message.substring(52);
+            this.resultMessage = response.message.substring(0, 52);
+            this.handleSuccess2(response.message);
+            this.testResult = 10;
+          } 
+          else {
+            if(response.message[0] !== 'E'){ //si ha sido respuesta incorrecta pero compila
+              this.userResult = response.message.substring(30); 
+            }
+            this.resultMessage = response.message.substring(0, 30); 
+            this.handleError2(response.message);
+            this.testResult = 20;
         }
         // reset id to null to avoid update
         this.submitId = "";
