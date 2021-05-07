@@ -484,9 +484,10 @@ export class AlgorithmQuestionComponent extends BaseComponent {
           this.printLog(response.message);
           this.userResult = "Por favor, entrega una solución válida para ver el resultado";
           this.userResultIntro = "Aquí podrás ver el resultado de tu código para los casos de prueba que aparecen en la descripción";
-          //hacer un for todos los \n que se encuentren en userResult ponerlos en una linea distinta
-        if (response.status === "pass") {//si ha acertado
+
+          if (response.status === "pass") {//si ha acertado
             this.userResult = response.message.substring(56);
+            this.userResult = this.userResult.replace('\n', '');
             this.userResultIntro = response.message.substring(43, 56);
             this.resultMessage = response.message.substring(0, 43);
             this.handleSuccess2(response.message);
