@@ -14,6 +14,9 @@ def main():
 		print "[Success] Tu solucion ha superado todos los casos!"
 	else:
 		print "[Fail] Tu respuesta no es correcta"
-    
+	print "Tu respuesta:"
+	print line1
+	print line2
+
 if __name__ == '__main__':
     main()

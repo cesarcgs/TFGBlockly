@@ -54,7 +54,8 @@
     </div>
   </div>
   <div *ngIf="tab==='solution'">
-    <div innerHTML={{userResult}}></div>
+    <div>{{userResultIntro}}<br></div>
+    <div class="panel-body"><pre>{{userResult}}</pre></div>
     <!-- <app-ngx-editor [config]="editorConfig" [(ngModel)]="solution"></app-ngx-editor> -->
   </div>
   <hr />

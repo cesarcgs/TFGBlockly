@@ -297,7 +297,8 @@ export class AlgorithmQuestionComponent extends BaseComponent {
   <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
   <category id="catFunctions" colour="290" custom="PROCEDURE" name="Funciones"></category>
 </xml>`;
-  userResult: string;
+  userResult;
+  userResultIntro: string;
   workspace: any;
   tab;
   _id;
@@ -362,6 +363,8 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     
     console.log("environment", environment);
     this.tab = "description";
+    this,this.userResultIntro= "Aquí podrás ver el resultado de tu código para los casos de prueba que aparecen en la descripción";
+    this.userResult = "Por favor, entrega una solución válida para ver el resultado";
     this.testResult = -1;
     this.uniquename = this.route.snapshot.paramMap.get("uniquename");
     this.username = this.authService.getUserName();
@@ -451,7 +454,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     /*if (!this.validate2()) {
       return;
     }*/
-
+    
     //Form is valid, now perform create or update
     //let question = this.baseForm.value;
     //this.printLog(question);
@@ -472,27 +475,37 @@ export class AlgorithmQuestionComponent extends BaseComponent {
       "initial",
       new Date(),
       0
-    );
-    this.printLog(submission);
-
-    // Submit solution
-    this.submissionService.submitSolution(submission).subscribe(
-      response => {
-        this.printLog(response);
-
+      );
+      this.printLog(submission);
+      
+      // Submit solution
+      this.submissionService.submitSolution(submission).subscribe(
+        response => {
+          this.printLog(response.message);
+          this.userResult = "Por favor, entrega una solución válida para ver el resultado";
+          this.userResultIntro = "Aquí podrás ver el resultado de tu código para los casos de prueba que aparecen en la descripción";
+          //hacer un for todos los \n que se encuentren en userResult ponerlos en una linea distinta
         if (response.status === "pass") {//si ha acertado
-            this.userResult = response.message.substring(52);
-            this.resultMessage = response.message.substring(0, 52);
+            this.userResult = response.message.substring(56);
+            this.userResultIntro = response.message.substring(43, 56);
+            this.resultMessage = response.message.substring(0, 43);
             this.handleSuccess2(response.message);
             this.testResult = 10;
           } 
           else {
             if(response.message[0] !== 'E'){ //si ha sido respuesta incorrecta pero compila
-              this.userResult = response.message.substring(30); 
+              this.userResult = response.message.substring(43); 
+              this.userResult = this.userResult.replace('\n', '');
+              this.userResultIntro = response.message.substring(30, 43);
+              this.resultMessage = response.message.substring(0, 30); 
+              this.handleError2(response.message);
+              this.testResult = 20;
             }
-            this.resultMessage = response.message.substring(0, 30); 
-            this.handleError2(response.message);
-            this.testResult = 20;
+            else {
+              this.resultMessage = response.message.substring(0, 34); 
+              this.handleError2(response.message);
+              this.testResult = 20;
+            }
         }
         // reset id to null to avoid update
         this.submitId = "";
