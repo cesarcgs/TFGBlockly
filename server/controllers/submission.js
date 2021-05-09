@@ -254,6 +254,26 @@ exports.submission_all = function(req, res, next) {
     });
 };
 
+exports.submission_allsubs = function(req, res, next) {
+  SleepUtil.sleep();
+  console.log(req.params.names);
+  var strname = req.params.names;
+  if (!strname) {
+    var error = ErrorUtil.buildError("Invalid parameter: names");
+    return res.status(422).json({ errors: [error] });
+  }
+
+  Submission.find({
+    username: strname,
+    status: { $ne: "initial" }
+  })
+    .sort({ questionname: "asc" }).sort({status: "desc"})
+    .exec(function(err, submissions) {
+      if (err) return next(err);
+      res.status(200).send(submissions);
+    });
+};
+
 exports.submission_run = function(req, res, next) {
   SleepUtil.sleep();
   //sleep.sleep(3); //sleep for 3 seconds

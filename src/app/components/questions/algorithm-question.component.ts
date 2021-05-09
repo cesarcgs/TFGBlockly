@@ -486,10 +486,17 @@ export class AlgorithmQuestionComponent extends BaseComponent {
           this.userResultIntro = "Aquí podrás ver el resultado de tu código para los casos de prueba que aparecen en la descripción";
 
           if (response.status === "pass") {//si ha acertado
-            this.userResult = response.message.substring(56);
-            this.userResult = this.userResult.replace('\n', '');
-            this.userResultIntro = response.message.substring(43, 56);
-            this.resultMessage = response.message.substring(0, 43);
+            this.resultMessage = response.message.split('\n')[0];
+            this.userResultIntro = response.message.split('\n')[1];
+            this.userResult = response.message.split(':\r\n')[1]
+            this.userResult = this.userResult.substring(0, this.userResult.length - 1)
+            //.replace('\n', '');
+
+
+            // this.userResult = response.message.substring(56);
+            // this.userResult = this.userResult.replace('\n', '');
+            // this.userResultIntro = response.message.substring(43, 56);
+            // this.resultMessage = response.message.substring(0, 43);
             this.handleSuccess2(response.message);
             this.testResult = 10;
           } 

@@ -10,7 +10,7 @@ def main():
     print "Tu respuesta:"
     with open("answer.txt", "r") as f:
         for i in range (0, 3):
-        line1 = f.readline().replace("\n", "")
+            line1 = f.readline().replace("\n", "")
             print line1
     
 if __name__ == '__main__':

@@ -74,6 +74,13 @@ export class SubmissionService {
       this.apiUrl + "/all/" + username + "," + questionname
     );
   }
+  getSubmissionsByOneUser(//TODO
+    username: string,
+  ): Observable<Submission[]> {
+    return this.http.get<Submission[]>(
+      this.apiUrl + "/allsubs/" + username
+    );
+  }
 
   //Submit solution
   submitSolution(submission: Submission): Observable<any> {
