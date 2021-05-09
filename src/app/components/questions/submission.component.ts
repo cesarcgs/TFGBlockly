@@ -28,14 +28,13 @@ export class SubmissionComponent extends BaseComponent {
         submission => {
           this.printLog(submission);
           this.questionname = submission.questionname;
-          this.language = submission.language;
           this.timesubmitted = submission.timesubmitted;
           this.status = submission.status;
           this.code1 = submission.solution;
           // check editor language
-          this.editorOptions1 = Object.assign({}, this.editorOptions1, {
-            language: submission.language
-          });
+          // this.editorOptions1 = Object.assign({}, this.editorOptions1, {
+          //   language: "python"
+          // });
           this.asyncEnd();
         },
         error => {

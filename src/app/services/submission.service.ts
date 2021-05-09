@@ -59,10 +59,9 @@ export class SubmissionService {
   getSubmissionByKeys(
     username: string,
     questionname: string,
-    language: string
   ): Observable<Submission> {
     return this.http.get<Submission>(
-      this.apiUrl + "/one/" + username + "," + questionname + "," + language
+      this.apiUrl + "/one/" + username + "," + questionname
     );
   }
 
@@ -73,6 +72,13 @@ export class SubmissionService {
   ): Observable<Submission[]> {
     return this.http.get<Submission[]>(
       this.apiUrl + "/all/" + username + "," + questionname
+    );
+  }
+  getSubmissionsByOneUser(//TODO
+    username: string,
+  ): Observable<Submission[]> {
+    return this.http.get<Submission[]>(
+      this.apiUrl + "/allsubs/" + username
     );
   }
 

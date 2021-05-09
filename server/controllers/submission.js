@@ -51,13 +51,10 @@ exports.question_findByKeys = function(req, res, next) {
       title: question.title,
       uniquename: question.uniquename,
       description: question.description,
-      mainfunction: question.mainfunction,
-      jsmain: question.jsmain,
-      pythonmain: question.pythonmain,
+      parameters: question.parameters,
       solution: question.solution,
       difficulty: question.difficulty,
       frequency: question.frequency,
-      rating: question.rating,
       hints: question.hints,
       id1: "",
       id2: "",
@@ -79,7 +76,7 @@ exports.question_findByKeys = function(req, res, next) {
       Submission.aggregate(
         [
           { $match: { questionname: keys[0], username: keys[1] } },
-          { $sort: { timeupdated: -1 } },
+          { $sort: { timesubmitted: -1 } },
           { $group: { _id: "$language", latest: { $first: "$$ROOT" } } },
           {
             $project: {
@@ -87,41 +84,35 @@ exports.question_findByKeys = function(req, res, next) {
               username: "$latest.username",
               questionname: "$latest.questionname",
               solution: "$latest.solution",
-              language: "$latest.language",
               status: "$latest.status",
-              timeupdated: "$latest.timeupdated",
               timesubmitted: "$latest.timesubmitted",
               runtime: "$latest.runtime"
             }
-          },
-          { $sort: { language: 1 } }
+          }
         ],
         function(err, submissions) {
           if (err) {
             return next(err);
           }
-          if (submissions) {
-            // replace the solution in question with user's submission
-            for (var i = 0; i < submissions.length; i++) {
-              const submission = submissions[i];
-              if (submission.language == "java") {
-                retq.mainfunction = submission.solution;
-                if (submission.status == "initial") {
-                  retq.id1 = submission._id;
-                }
-              } else if (submission.language == "javascript") {
-                retq.jsmain = submission.solution;
-                if (submission.status == "initial") {
-                  retq.id2 = submission._id;
-                }
-              } else if (submission.language == "python") {
-                retq.pythonmain = submission.solution;
-                if (submission.status == "initial") {
-                  retq.id3 = submission._id;
-                }
-              }
-            }
-          }
+          // if (submissions) {
+          //   // replace the solution in question with user's submission
+          //   for (var i = 0; i < submissions.length; i++) {
+          //     const submission = submissions[i];
+          //     if (submission.language == "java") {
+          //       if (submission.status == "initial") {
+          //         retq.id1 = submission._id;
+          //       }
+          //     } else if (submission.language == "javascript") {
+          //       if (submission.status == "initial") {
+          //         retq.id2 = submission._id;
+          //       }
+          //     } else if (submission.language == "python") {
+          //       if (submission.status == "initial") {
+          //         retq.id3 = submission._id;
+          //       }
+          //     }
+          //   }
+          // }
           //console.log(retq.id1);
           //console.log(retq);
           res.status(200).send(retq);
@@ -140,10 +131,8 @@ exports.submission_create = function(req, res, next) {
   var submission = new Submission({
     username: req.body.username,
     questionname: req.body.questionname,
-    language: req.body.language,
     solution: req.body.solution,
     status: "initial", // not submitted -> just created
-    timeupdated: moment(new Date(Date.now())),
     timesubmitted: null,
     runtime: 0
   });
@@ -171,10 +160,8 @@ exports.submission_update = function(req, res, next) {
   var upd = {
     username: req.body.username,
     questionname: req.body.questionname,
-    language: req.body.language,
     solution: req.body.solution,
     status: "initial",
-    timeupdated: moment(new Date(Date.now()))
   };
 
   Submission.findOne({ _id: req.params.id }, function(err, submission) {
@@ -216,7 +203,7 @@ exports.submission_findByKeys = function(req, res, next) {
 
   // find the latest one with the given user name, quenstion name and language
   Submission.findOne(
-    { username: keys[0], questionname: keys[1], language: keys[2] },
+    { username: keys[0], questionname: keys[1] },
     null,
     { sort: { timecreated: -1 } },
     function(err, submission) {
@@ -267,16 +254,34 @@ exports.submission_all = function(req, res, next) {
     });
 };
 
+exports.submission_allsubs = function(req, res, next) {
+  SleepUtil.sleep();
+  console.log(req.params.names);
+  var strname = req.params.names;
+  if (!strname) {
+    var error = ErrorUtil.buildError("Invalid parameter: names");
+    return res.status(422).json({ errors: [error] });
+  }
+
+  Submission.find({
+    username: strname,
+    status: { $ne: "initial" }
+  })
+    .sort({ questionname: "asc" }).sort({status: "desc"})
+    .exec(function(err, submissions) {
+      if (err) return next(err);
+      res.status(200).send(submissions);
+    });
+};
+
 exports.submission_run = function(req, res, next) {
   SleepUtil.sleep();
   //sleep.sleep(3); //sleep for 3 seconds
   var newsubmit = new Submission({
     username: req.body.username,
     questionname: req.body.questionname,
-    language: req.body.language,
     solution: req.body.solution,
     status: "initial", // not submitted -> just created
-    timeupdated: moment(new Date(Date.now())),
     timesubmitted: moment(new Date(Date.now())),
     runtime: 0
   });
@@ -287,7 +292,6 @@ exports.submission_run = function(req, res, next) {
     {
       username: newsubmit.username,
       questionname: newsubmit.questionname,
-      language: newsubmit.language,
       status: "initial"
     },
     function(err, submission) {
@@ -306,7 +310,6 @@ exports.submission_run = function(req, res, next) {
       } else {
         // Update solution
         submission.solution = newsubmit.solution;
-        submission.timeupdated = moment(new Date(Date.now()));
         Submission.findByIdAndUpdate(
           submission._id,
           { $set: submission },
@@ -328,7 +331,6 @@ function run(req, res, next, submission) {
   // 2. Then, run the solution to get the test result
   RunnerManager.run(
     submission.questionname,
-    submission.language,
     submission.solution,
     function(status, message) {
       const result = {

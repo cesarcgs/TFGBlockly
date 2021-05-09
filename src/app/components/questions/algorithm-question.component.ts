@@ -27,16 +27,290 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     toolbar: []
   };
   
+  toolbox = `<xml id="toolbox" style="display: none">
+  <category id="catLogic" colour="210" name="Lógica">
+    <block type="controls_if"></block>
+    <block type="logic_compare"></block>
+    <block type="logic_operation"></block>
+    <block type="logic_operation"></block>
+<!-- <block type="logic_negate"></block>
+    <block type="logic_boolean"></block>
+    <block type="logic_null"></block>
+    <block type="logic_ternary"></block> -->
+  </category>
+  <category id="catLoops" colour="120" name="Bucles">
+    <block type="controls_repeat_ext">
+      <value name="TIMES">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="controls_whileUntil"></block>
+    <block type="controls_for">
+      <value name="FROM">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="TO">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+      <value name="BY">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="controls_forEach"></block>
+    <block type="controls_flow_statements"></block>
+  </category> 
+  <category id="catMath" colour="230" name="Matemáticas">
+    <block type="math_number"></block>
+    <block type="math_arithmetic">
+      <value name="A">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="B">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_single">
+      <value name="NUM">
+        <shadow type="math_number">
+          <field name="NUM">9</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_trig">
+      <value name="NUM">
+        <shadow type="math_number">
+          <field name="NUM">45</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_constant"></block>
+    <block type="math_number_property">
+      <value name="NUMBER_TO_CHECK">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_change">
+      <value name="DELTA">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_round">
+      <value name="NUM">
+        <shadow type="math_number">
+          <field name="NUM">3.1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_on_list"></block>
+    <block type="math_modulo">
+      <value name="DIVIDEND">
+        <shadow type="math_number">
+          <field name="NUM">64</field>
+        </shadow>
+      </value>
+      <value name="DIVISOR">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_constrain">
+      <value name="VALUE">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+      <value name="LOW">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="HIGH">
+        <shadow type="math_number">
+          <field name="NUM">100</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_random_int">
+      <value name="FROM">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="TO">
+        <shadow type="math_number">
+          <field name="NUM">100</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="math_random_float"></block>
+  </category>
+  <category id="catText" colour="160" name="Texto">
+    <block type="text"></block>
+    <block type="text_join"></block>
+    <block type="text_append">
+      <value name="TEXT">
+        <shadow type="text"></shadow>
+      </value>
+    </block>
+    <block type="text_length">
+      <value name="VALUE">
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_isEmpty">
+      <value name="VALUE">
+        <shadow type="text">
+          <field name="TEXT"></field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_indexOf">
+      <value name="VALUE">
+        <block type="variables_get">
+          <field name="VAR">text</field>
+        </block>
+      </value>
+      <value name="FIND">
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_charAt">
+      <value name="VALUE">
+        <block type="variables_get">
+          <field name="VAR">text</field>
+        </block>
+      </value>
+    </block>
+    <block type="text_getSubstring">
+      <value name="STRING">
+        <block type="variables_get">
+          <field name="VAR">text</field>
+        </block>
+      </value>
+    </block>
+    <block type="text_changeCase">
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_trim">
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_print">
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="text_prompt_ext">
+      <value name="TEXT">
+        <shadow type="text">
+          <field name="TEXT">abc</field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+  <category id="catInput" colour="20" name="Lectura de entrada">
+    <block type="input_variable_int"></block>
+    <block type="input_variable_string"></block>
+  </category>
+  <category id="catLists" colour="260" name="Listas">
+    <block type="lists_create_with">
+      <mutation items="0"></mutation>
+    </block>
+    <block type="lists_create_with"></block>
+    <block type="lists_repeat">
+      <value name="NUM">
+        <shadow type="math_number">
+          <field name="NUM">5</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="lists_length"></block>
+    <block type="lists_isEmpty"></block>
+    <block type="lists_indexOf">
+      <value name="VALUE">
+        <block type="variables_get">
+          <field name="VAR">list</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_getIndex">
+      <value name="VALUE">
+        <block type="variables_get">
+          <field name="VAR">list</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_setIndex">
+      <value name="LIST">
+        <block type="variables_get">
+          <field name="VAR">list</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_getSublist">
+      <value name="LIST">
+        <block type="variables_get">
+          <field name="VAR">list</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_split">
+      <value name="DELIM">
+        <shadow type="text">
+          <field name="TEXT">,</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="lists_sort"></block>
+  </category>
+  <sep></sep>
+  <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
+  <category id="catFunctions" colour="290" custom="PROCEDURE" name="Funciones"></category>
+</xml>`;
+  userResult;
+  userResultIntro: string;
   workspace: any;
   tab;
   _id;
   username;
   uniquename;
-  selectedLang;
+  //selectedLang;
   submissions: any = [];
   testResult: number; // -1: not submitted, 10: pass, 20: fail
   resultMessage;
   //Create form
+  
+  //Borrar
   baseForm = new FormGroup({
     language: new FormControl(
       "javascript",
@@ -46,54 +320,22 @@ export class AlgorithmQuestionComponent extends BaseComponent {
       solution2: new FormControl("", Validators.compose([Validators.required])),
       solution3: new FormControl("", Validators.compose([Validators.required])),
       output: new FormControl("", null)
-  });
-
+    });
+    
+  parameters: string;
   @Input() sequence: number;
   @Input() title: string;
-  @Input() description: string;
   @Input() solution: string;
   @Input() hints: string;
-  @Input() options = [];
-  options_dev = [
-    {
-      value: "java",
-      name: "Java"
-    },
-    {
-      value: "javascript",
-      name: "JavaScript"
-    },
-    {
-      value: "python",
-      name: "Python"
-    }
-  ];
-  
-  options_prod = [
-    {
-      value: "javascript",
-      name: "JavaScript"
-    },
-    {
-      value: "python",
-      name: "Python"
-    }
-  ];
-  
-  editorOptions1 = { theme: "vs", language: "java" };
-  editorOptions2 = { theme: "vs", language: "javascript" };
-  editorOptions3 = { theme: "vs", language: "python" };
-  code1: string = "";
-  code2: string = "";
-  code3: string = "";
-  submitId1: string = "";
-  submitId2: string = "";
-  submitId3: string = "";  
+  @Input() description: string;
+  @Input() options = {
+    value: "python",
+    name: "Python"
+  };
 
-  onChange(language) {
-    this.printLog(language);
-    this.selectedLang = language;
-  }
+  editorOptions = { theme: "vs", language: "python" };
+  code: string = "";
+  submitId: string = "";  
 
   changeTab(tab) {
     this.tab = tab;
@@ -117,15 +359,12 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     }
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     
     console.log("environment", environment);
-    if (environment.production) {
-      this.options = this.options_prod;
-    } else {
-      this.options = this.options_dev;
-    }
     this.tab = "description";
+    this,this.userResultIntro= "Aquí podrás ver el resultado de tu código para los casos de prueba que aparecen en la descripción";
+    this.userResult = "Por favor, entrega una solución válida para ver el resultado";
     this.testResult = -1;
     this.uniquename = this.route.snapshot.paramMap.get("uniquename");
     this.username = this.authService.getUserName();
@@ -141,20 +380,16 @@ export class AlgorithmQuestionComponent extends BaseComponent {
             this.description = question.description;
             this.solution = question.solution;
             this.hints = question.hints;
-            this.baseForm.setValue({
-              language: "javascript",
-              solution1: question.mainfunction,
-              solution2: question.jsmain,
-              solution3: question.pythonmain,
-              output: ""
-            });
-            this.code1 = question.mainfunction;
-            this.code2 = question.jsmain;
-            this.code3 = question.pythonmain;
-            this.selectedLang = "javascript";
-            this.submitId1 = question.id1;
-            this.submitId2 = question.id2;
-            this.submitId3 = question.id3;
+            this.parameters = question.parameters;
+            this.submitId = question.id3;
+
+            if(this.parameters != "none") {
+              this.toolbox = this.parameters;
+            }
+            this.workspace = Blockly.inject('blocklyDiv', {
+              toolbox: this.toolbox, 
+              scrollbars: false
+            }); 
             this.asyncEnd();
           },
           error => {
@@ -162,12 +397,6 @@ export class AlgorithmQuestionComponent extends BaseComponent {
           }
         );
     }
-    console.log("injectando el blocky");
-    this.workspace = Blockly.inject('blocklyDiv', {
-      toolbox: document.getElementById('toolbox'),
-      scrollbars: false
-    }); 
-    console.log("ya esta in");
   }
 
   onSave() {
@@ -182,25 +411,15 @@ export class AlgorithmQuestionComponent extends BaseComponent {
 
     let id = "";
     let solution = "";
-    if (this.selectedLang == "java") {
-      id = this.submitId1;
-      solution = this.code1;
-    } else if (this.selectedLang == "javascript") {
-      id = this.submitId2;
-      solution = this.code2;
-    } else if (this.selectedLang == "python") {
-      id = this.submitId3;
-      solution = this.code3;
-    }
+    id = this.submitId;
+    solution = this.code;
     let submission = new Submission(
       id,
       this.username,
       this.uniquename,
-      question.language,
       solution,
       "initial",
       new Date(),
-      null,
       0
     );
     this.printLog(submission);
@@ -209,13 +428,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
       //Create question
       this.submissionService.createSubmission(submission).subscribe(
         newsubmission => {
-          if (this.selectedLang == "java") {
-            this.submitId1 = newsubmission._id;
-          } else if (this.selectedLang == "javascript") {
-            this.submitId2 = newsubmission._id;
-          } else if (this.selectedLang == "python") {
-            this.submitId3 = newsubmission._id;
-          }
+          this.submitId = newsubmission._id;
           this.handleSuccess("Your solution has been saved successfully.");
         },
         error => {
@@ -226,13 +439,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
       //Update question
       this.submissionService.updateSubmission(submission).subscribe(
         updatedsubmission => {
-          if (this.selectedLang == "java") {
-            this.submitId1 = updatedsubmission._id;
-          } else if (this.selectedLang == "javascript") {
-            this.submitId2 = updatedsubmission._id;
-          } else if (this.selectedLang == "python") {
-            this.submitId3 = updatedsubmission._id;
-          }
+          this.submitId = updatedsubmission._id;
           this.handleSuccess("Your solution has been updated successfully.");
         },
         error => {
@@ -244,66 +451,72 @@ export class AlgorithmQuestionComponent extends BaseComponent {
 
   onSubmitSolution() {
     this.testResult = -1;
-    if (!this.validate2()) {
+    /*if (!this.validate2()) {
       return;
-    }
-
+    }*/
+    
     //Form is valid, now perform create or update
-    let question = this.baseForm.value;
-    this.printLog(question);
-    let id = "";
-    let solution = "";
-    if (this.selectedLang == "java") {
-      id = this.submitId1;
-      solution = this.code1;
-    } else if (this.selectedLang == "javascript") {
-      id = this.submitId2;
-      solution = this.code2;
-    } else if (this.selectedLang == "python") {
-      id = this.submitId3;
-      solution = this.code3;
-    }
+    //let question = this.baseForm.value;
+    //this.printLog(question);
+    let id = this.submitId;
+    //let solution = this.code;
+    let solution = "import sys\nclass Solution(object):\n\tdef main(self):\n\t\tog_stdout = sys.stdout\n\t\tsys.stdout = open('answer.txt', 'a')\n\t\tf = open('testcase.txt', 'r')\n\t\t";
+    console.log(Blockly.Python.workspaceToCode(this.workspace));
+    solution = solution + Blockly.Python.workspaceToCode(this.workspace).replaceAll('\n', '\n\t\t');
+    solution = solution + ("sys.stdout.close()\n\t\tsys.stdout = og_stdout\n\t\tf.close()")
+    
+    this.printLog(solution);
+    this.printLog(this.submitId);
     let submission = new Submission(
       id,
       this.username,
       this.uniquename,
-      question.language,
       solution,
       "initial",
       new Date(),
-      null,
       0
-    );
-    this.printLog(submission);
+      );
+      this.printLog(submission);
+      
+      // Submit solution
+      this.submissionService.submitSolution(submission).subscribe(
+        response => {
+          this.printLog(response.message);
+          this.userResult = "Por favor, entrega una solución válida para ver el resultado";
+          this.userResultIntro = "Aquí podrás ver el resultado de tu código para los casos de prueba que aparecen en la descripción";
 
-    // Submit solution
-    this.submissionService.submitSolution(submission).subscribe(
-      response => {
-        this.printLog(response);
-        /*
-        this.baseForm.setValue({
-          language: submission.language,
-          solution: submission.solution,
-          output: response.message
-          //status: submission.status
-        });*/
-        if (response.status === "pass") {
-          this.handleSuccess2(response.message);
-          this.testResult = 10;
-          this.resultMessage = response.message;
-        } else {
-          this.handleError2(response.message);
-          this.testResult = 20;
-          this.resultMessage = response.message;
+          if (response.status === "pass") {//si ha acertado
+            this.resultMessage = response.message.split('\n')[0];
+            this.userResultIntro = response.message.split('\n')[1];
+            this.userResult = response.message.split(':\r\n')[1]
+            this.userResult = this.userResult.substring(0, this.userResult.length - 1)
+            //.replace('\n', '');
+
+
+            // this.userResult = response.message.substring(56);
+            // this.userResult = this.userResult.replace('\n', '');
+            // this.userResultIntro = response.message.substring(43, 56);
+            // this.resultMessage = response.message.substring(0, 43);
+            this.handleSuccess2(response.message);
+            this.testResult = 10;
+          } 
+          else {
+            if(response.message[0] !== 'E'){ //si ha sido respuesta incorrecta pero compila
+              this.userResult = response.message.substring(43); 
+              this.userResult = this.userResult.replace('\n', '');
+              this.userResultIntro = response.message.substring(30, 43);
+              this.resultMessage = response.message.substring(0, 30); 
+              this.handleError2(response.message);
+              this.testResult = 20;
+            }
+            else {
+              this.resultMessage = response.message.substring(0, 34); 
+              this.handleError2(response.message);
+              this.testResult = 20;
+            }
         }
         // reset id to null to avoid update
-        if (this.selectedLang == "java") {
-          this.submitId1 = "";
-        } else if (this.selectedLang == "javascript") {
-          this.submitId2 = "";
-        } else if (this.selectedLang == "python") {
-          this.submitId3 = "";
-        }
+        this.submitId = "";
         this.refresh();
       },
       error => {

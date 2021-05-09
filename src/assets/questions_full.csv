@@ -1,4 +1,4 @@
-_id,sequence,title,description,mainfunction,difficulty,__v,frequency,uniquename,rating,hints,solution,jsmain,pythonmain
+_id,sequence,title,description,mainfunction,difficulty,__v,frequency,uniquename,rating,hints,solution,jsmain,pythonmain,parameters
 "5b3fa4f9b0b5ae24d7ba79a6",3,"Single Number","<p style=""margin-bottom: 10px;"">Given a&nbsp;<span style=""font-weight: 700;"">non-empty</span>&nbsp;array of integers, every element appears&nbsp;<em>twice</em>&nbsp;except for one. Find that single one.</p><p style=""margin-bottom: 10px;""><span style=""font-weight: 700;"">Note:</span></p><p style=""margin-bottom: 10px;"">Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p><p style=""margin-bottom: 10px;""><span style=""font-weight: 700;"">Example 1:</span></p><pre style=""line-height: 1.42857;""><span style=""font-weight: 700;"">Input:</span> [2,2,1]
 <span style=""font-weight: 700;"">Output:</span> 1
 </pre><p style=""margin-bottom: 10px;""><span style=""font-weight: 700;"">Example 2:</span></p><pre style=""line-height: 1.42857;""><span style=""font-weight: 700;"">Input:</span> [4,1,2,1,2]

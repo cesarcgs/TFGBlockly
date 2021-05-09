@@ -138,9 +138,10 @@ module.exports.login = function(req, res) {
       var token = user.generateJwt();
       if (req.body.remember == true) {
         console.log("remember me, save cookie");
-
+        
         res.cookie("cookieToken", token, { maxAge: 900000 }); //expires after 900000 ms = 15 minutes
       }
+      console.log(res);
       res.status(200);
       res.json({
         token: token

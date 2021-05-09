@@ -106,9 +106,7 @@ export class QuestionComponent extends BaseComponent {
         title: [null, [Validators.required, Validators.minLength(5)]],
         uniquename: [null, [Validators.required]],
         description: [null, [Validators.required]],
-        mainfunction: [null, [Validators.required]],
-        jsmain: [null, [Validators.required]],
-        pythonmain: [null, [Validators.required]],
+        parameters: ["none", [Validators.required]],
         difficulty: [10, [Validators.required]],
         frequency: [
           null,
@@ -117,15 +115,6 @@ export class QuestionComponent extends BaseComponent {
             Validators.pattern("[0-9]+"),
             Validators.min(0),
             Validators.max(100)
-          ]
-        ],
-        rating: [
-          0,
-          [
-            Validators.required,
-            Validators.pattern("[0-9]+"),
-            Validators.min(0),
-            Validators.max(5)
           ]
         ],
         hints: [],
@@ -141,14 +130,11 @@ export class QuestionComponent extends BaseComponent {
         title: [],
         uniquename: [],
         description: [],
-        mainfunction: [],
-        jsmain: [],
-        pythonmain: [],
         difficulty: [],
         frequency: [],
-        rating: [],
         hints: [],
-        solution: []
+        solution: [],
+        parameters: []
       });
 
       /*
@@ -166,7 +152,6 @@ export class QuestionComponent extends BaseComponent {
         title: [null, [Validators.required, Validators.minLength(5)]],
         uniquename: [null, [Validators.required]],
         description: [null, [Validators.required]],
-        mainfunction: [null, [Validators.required]],
         difficulty: [null, [Validators.required]],
         frequency: [
           null,
@@ -187,7 +172,6 @@ export class QuestionComponent extends BaseComponent {
           ]
         ]
       });*/
-
       this.questionService.getQuestionById(this._id).subscribe(
         question => {
           this.baseForm.setValue({
@@ -196,13 +180,10 @@ export class QuestionComponent extends BaseComponent {
             title: question.title,
             uniquename: question.uniquename,
             description: question.description,
-            mainfunction: question.mainfunction,
-            jsmain: question.jsmain || "",
-            pythonmain: question.pythonmain || "",
             difficulty: question.difficulty,
             frequency: question.frequency,
-            rating: question.rating,
             hints: question.hints,
+            parameters: question.parameters,
             solution: question.solution || ""
           });
 
@@ -224,11 +205,7 @@ export class QuestionComponent extends BaseComponent {
           this.baseForm.controls["description"].setValidators([
             Validators.required
           ]);
-          this.baseForm.controls["mainfunction"].setValidators([
-            Validators.required
-          ]);
-          this.baseForm.controls["jsmain"].setValidators([Validators.required]);
-          this.baseForm.controls["pythonmain"].setValidators([
+          this.baseForm.controls["parameters"].setValidators([
             Validators.required
           ]);
           this.baseForm.controls["difficulty"].setValidators([
@@ -240,57 +217,8 @@ export class QuestionComponent extends BaseComponent {
             Validators.min(0),
             Validators.max(100)
           ]);
-          this.baseForm.controls["rating"].setValidators([
-            Validators.required,
-            Validators.pattern("[0-9]+"),
-            Validators.min(0),
-            Validators.max(5)
-          ]);
-          /*
-          this.baseForm = this.formBuilder.group({
-            _id: [question._id, [Validators.required]],
-            sequence: [
-              question.sequence,
-              [
-                Validators.required,
-                Validators.pattern("[0-9]+"),
-                Validators.min(0),
-                Validators.max(2147483647)
-              ]
-            ],
-            title: [
-              question.title,
-              [Validators.required, Validators.minLength(5)]
-            ],
-            uniquename: [question.uniquename, [Validators.required]],
-            description: [question.description, [Validators.required]],
-            mainfunction: [question.mainfunction, [Validators.required]],
-            difficulty: [question.difficulty, [Validators.required]],
-            frequency: [
-              question.frequency,
-              [
-                Validators.required,
-                Validators.pattern("[0-9]+"),
-                Validators.min(0),
-                Validators.max(100)
-              ]
-            ],
-            rating: [
-              question.rating,
-              [
-                Validators.required,
-                Validators.pattern("[0-9]+"),
-                Validators.min(0),
-                Validators.max(5)
-              ]
-            ]
-          });*/
-          this.code1 = question.mainfunction;
-          this.code2 = question.jsmain;
-          this.code3 = question.pythonmain;
           this.selectedValue = question.difficulty;
           //this.htmlContent = question.description;
-          //this.codecontent = question.mainfunction;
         },
         error => {
           this.printError(error);

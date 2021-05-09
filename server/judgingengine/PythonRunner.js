@@ -27,7 +27,7 @@ class PythonRunner extends Runner {
     const options = { cwd: directory };
     const argsRun = [];
     argsRun[0] = file;
-    console.log(`options: ${options}`);
+    console.log(options);
     console.log(`argsRun: ${argsRun}`);
     const executor = spawn("python", argsRun, options);
     executor.stdout.on("data", output => {
@@ -40,7 +40,8 @@ class PythonRunner extends Runner {
     });
     executor.stderr.on("data", output => {
       console.log(`stderr: ${String(output)}`);
-      callback("err_exe", String(output)); // err, execution failure
+      //callback("err_exe", String(output)); // err, execution failure
+      callback("ok", "[Fail]Error en la ejecución de tu código") // err, execution failure
     });
     executor.on("close", output => {
       console.log(`stdout: ${output}`);

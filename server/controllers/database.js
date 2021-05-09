@@ -44,7 +44,7 @@ exports.collection_getall = function(req, res, next) {
     });
   } else if (collectionname == "submissions") {
     Submission.find({})
-      .sort({ timeupdated: "-1" })
+      .sort({ timesubmitted: "-1" })
       .exec(function(err, submissions) {
         if (err) return next(err);
         res.status(200).send(submissions);

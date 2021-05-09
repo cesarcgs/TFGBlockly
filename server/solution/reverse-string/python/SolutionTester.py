@@ -1,5 +1,6 @@
 import json
 import Solution
+import filecmp
 
 def stringToIntegerList(input):
     return json.loads(input)
@@ -14,40 +15,49 @@ def integerListToString(nums, len_of_list=None):
 
 def main():
     with open('testcase.txt', "r") as f:
+        content = f.read()
         lines = f.readlines()
     i = 0
-    passall = True
-    while i < len(lines) :
-        line = lines[i]
-        s = line.replace("\n","")
-        if (s == "null") :
-            s = None
-        #print s
-        line = lines[i+1]
-        #print line
-        expected = line.replace("\n","")
-        
-        ret = Solution.Solution().reverseString(s)
+    # passall = True
+    # """ while i < len(lines) :
+    #     line = lines[i]
+    #     s = line.replace("\n","")
+    #     if (s == "null") :
+    #         s = None
+    #     #print s
+    #     line = lines[i+1]
+    #     #print line
+    #     expected = line.replace("\n","")
+    #     Solution.Solution().main()
+    #     testresult =  open('testresult.txt', "r")
+    #     answer =  open('answer.txt', "r")
+    #     # comparamos archivos linea a linea
+    #     iguales = filecmp.cmp(testresult, answer, shallow = false)
 
-        #print "expected:" + expected
-        #print "ret:" + ret
-        if (expected == '""' and ret == "") :
-            i += 2
-            continue
 
-        if (expected != ret) :
-            if (s is None) :
-                strnums = 'null'
-            else:
-                strnums = s
-            print "[Fail]" + strnums + ";" + ret + ";" + expected
-            passall = False
-            break
+    #     #print "expected:" + expected
+    #     #print "ret:" + ret
+    #     if (expected == '""' and ret == "") :
+    #         i += 2
+    #         continue
 
-        i = i + 2
+    #     if (expected != ret) :
+    #         if (s is None) :
+    #             strnums = 'null'
+    #         else:
+    #             strnums = s
+    #         print "[Fail]" + strnums + ";" + ret + ";" + expected
+    #         passall = False
+    #         break
 
-    if passall == True :
-        print "[Success]Your solution passed all " + str(len(lines)/2) + " test cases!"
+    #     i = i + 2 """
+    Solution.Solution().main()
+    # testresult =  open('testresult.txt', "r")
+    # answer =  open('answer.txt', "r")
+    if filecmp.cmp("answer.txt", "testresult.txt"):
+        print "[Sucess]Your solution passed all test cases!"
+    else:
+        print "[Fail]" + content
 
 if __name__ == '__main__':
     main()
