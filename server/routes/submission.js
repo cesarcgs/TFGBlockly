@@ -20,6 +20,7 @@ router.get("/one/:keys", submission_controller.submission_findByKeys);
 
 //router.put("/:names", submission_controller.submission_update);
 router.get("/all/:names", submission_controller.submission_all);
+router.get("/allsubs/:names", submission_controller.submission_allsubs);
 
 router.post("/run", submission_controller.submission_run);
 

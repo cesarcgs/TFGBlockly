@@ -9,6 +9,7 @@
         <th>Título</th>
         <th>Dificultad</th>
         <th>Frecuencia</th>
+        <th>Superado</th>
       </tr>
     </thead>
     <tbody>
@@ -21,6 +22,9 @@
         </td>
         <td>
           <app-widget-frequency-bar [frequency]="[question.frequency]"></app-widget-frequency-bar>
+        </td>
+        <td>
+          <span>{{doneList[question.sequence - 1]}}</span>
         </td>
       </tr>
     </tbody>
