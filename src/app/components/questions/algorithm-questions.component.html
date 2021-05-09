@@ -9,7 +9,7 @@
         <th>Título</th>
         <th>Dificultad</th>
         <th>Frecuencia</th>
-        <th>Superado</th>
+        <th style="text-align:center">Superado</th>
       </tr>
     </thead>
     <tbody>
@@ -23,8 +23,16 @@
         <td>
           <app-widget-frequency-bar [frequency]="[question.frequency]"></app-widget-frequency-bar>
         </td>
-        <td>
-          <span>{{doneList[question.sequence - 1]}}</span>
+        <td style="text-align:center">
+          <ng-container *ngIf="doneList[question.sequence-1] == 'res'">
+            &#x2714;
+          </ng-container>
+          <ng-container *ngIf="doneList[question.sequence-1] == 'ni'">
+            &#x268A;
+          </ng-container>
+          <ng-container *ngIf="doneList[question.sequence-1] == 'i'">
+            &#x2715;      
+          </ng-container>
         </td>
       </tr>
     </tbody>
