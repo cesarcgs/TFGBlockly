@@ -19,12 +19,12 @@ mongoose.connect(dbURI);
 mongoose.connection.on("open", function() {
   const users = mongoose.connection.db.collection("users");
 
-  users.findOne({ username: "jojozhuang" }, function(err, user) {
+  users.findOne({ username: "admin" }, function(err, user) {
     var curDate = new Date();
     if (!user) {
       const defaultUser = {
-        username: "jojozhuang",
-        email: "jojozhuang@gmail.com",
+        username: "admin",
+        email: "admin@admin.com",
         hash:
           "9f51bcd7a80a8da6fa02dcc9e136cd2ea5a08a24c988e4d822ebeb0b3eb430fd9a62af4fc6e1c456cb12cbc5b8792f737166ca39b3bb0fe4d34e1cd1ae134fd3",
         salt: "f8dae7c30d811b322b8763afc424fec0",
@@ -37,14 +37,14 @@ mongoose.connection.on("open", function() {
           console.log("Error occurs when creating default user:" + err);
         }
         console.log(
-          "[Database Initialization] New admin user 'jojozhuang' was created!"
+          "[Database Initialization] New admin user 'admin' was created!"
         );
-        console.log("[Default Admin] User Name: jojozhuang, Password: 111111");
+        console.log("[Default Admin] User Name: admin, Password: 111111");
       });
 
       users.save(defaultUser);
     } else {
-      console.log("[Default Admin] User Name: jojozhuang, Password: 111111");
+      console.log("[Default Admin] User Name: admin, Password: 111111");
     }
   });
 

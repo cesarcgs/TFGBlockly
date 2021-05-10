@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { SubmissionService } from "./../../services";
 import { BaseComponent } from "../base.component";
-import { Console } from "console";
 
 
 @Component({

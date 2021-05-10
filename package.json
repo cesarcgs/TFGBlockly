@@ -1,9 +1,9 @@
 {
-  "name": "online-judge-mean",
+  "name": "tfg-blockly",
   "version": "1.0.0",
   "author": {
-    "name": "Rong Zhuang",
-    "email": "jojozhuang@gmail.com"
+    "name": "Guzman Jesus Cesar",
+    "email": "guzmanga@ucm.es"
   },
   "license": "MIT",
   "scripts": {
@@ -105,7 +105,7 @@
     "typescript": "~3.2.4"
   },
   "engines": {
-    "node": "9.4.0",
-    "npm": "6.9.0"
+    "node": "14.16.0",
+    "npm": "6.14.11"
   }
 }
