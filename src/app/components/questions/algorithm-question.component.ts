@@ -488,9 +488,8 @@ export class AlgorithmQuestionComponent extends BaseComponent {
           if (response.status === "pass") {//si ha acertado
             this.resultMessage = response.message.split('\n')[0];
             this.userResultIntro = response.message.split('\n')[1];
-            this.userResult = response.message.split(':\r\n')[1]
-            this.userResult = this.userResult.substring(0, this.userResult.length - 1)
-            //.replace('\n', '');
+            this.userResult = response.message.split(':\n')[1]
+            this.userResult = this.userResult.substring(0, this.userResult.length - 1).replace('\n', '');
 
 
             // this.userResult = response.message.substring(56);
