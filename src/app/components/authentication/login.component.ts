@@ -73,7 +73,7 @@ export class LoginComponent extends BaseComponent {
 
     this.authService.login(this.credentials, user.remember).subscribe(
       () => {
-        this.handleSuccess("Login successful!", true, this.returnUrl);
+        this.handleSuccess("Inicio de sesión exitoso!", true, this.returnUrl);
       },
       error => {
         this.handleError(error);

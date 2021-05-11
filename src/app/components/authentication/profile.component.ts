@@ -53,7 +53,7 @@ export class ProfileComponent extends BaseComponent {
 
     this.authService.update(this.credentials, true).subscribe(
       () => {
-        this.handleSuccess("Your profile has been updated successfully!");
+        this.handleSuccess("Tu perfil ha sido editado correctamente!");
       },
       error => {
         this.handleError(error);
