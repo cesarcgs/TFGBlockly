@@ -9,7 +9,7 @@
         <th>Título</th>
         <th>Dificultad</th>
         <th>Frecuencia</th>
-        <th style="text-align:center">Superado</th>
+        <th style="text-align:center" *ngIf="username !== ''">Superado</th>
       </tr>
     </thead>
     <tbody>

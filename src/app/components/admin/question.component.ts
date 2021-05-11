@@ -242,7 +242,7 @@ export class QuestionComponent extends BaseComponent {
       this.questionService.createQuestion(question).subscribe(
         () => {
           this.handleSuccess(
-            "Question has been created successfully.",
+            "Problema creado correctamente.",
             true,
             "/admin/questions"
           );
@@ -256,7 +256,7 @@ export class QuestionComponent extends BaseComponent {
       this.questionService.updateQuestion(question).subscribe(
         () => {
           this.handleSuccess(
-            "Question has been updated successfully.",
+            "Problema editado correctamente.",
             true,
             "/admin/questions"
           );

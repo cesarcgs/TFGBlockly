@@ -45,7 +45,7 @@ export class UsersComponent extends RootComponent {
     this.userService.deleteUserById(this.id).subscribe(
       successCode => {
         this.asyncEnd();
-        this.alertService.success("User has been deleted successfully.");
+        this.alertService.success("Usuario eliminado con éxito.");
         this.getUsers();
         this.modalRef.hide();
       },
@@ -74,7 +74,7 @@ export class UsersComponent extends RootComponent {
         this.asyncEnd();
         this.resetPWdModalRef.hide();
         this.alertService.success(
-          "User's password has been reset successfully!"
+          "Contraseña del usuario reseteada con éxito!"
         );
       },
       error => {

@@ -47,7 +47,7 @@ export class QuestionsComponent extends RootComponent {
     this.questionService.deleteQuestionById(this.id_del).subscribe(
       successCode => {
         this.asyncEnd();
-        this.alertService.success("Question has been deleted successfully.");
+        this.alertService.success("Problema eliminado correctamente.");
         this.getQuestions();
         this.modalRef.hide();
       },

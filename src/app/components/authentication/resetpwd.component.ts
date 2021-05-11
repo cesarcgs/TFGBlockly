@@ -45,7 +45,7 @@ export class ResetpwdComponent extends BaseComponent {
 
     this.authService.resetPassword(this.credentials).subscribe(
       () => {
-        this.handleSuccess("Password has been updated successful!");
+        this.handleSuccess("La contraseña ha sido editada correctamente!");
       },
       error => {
         this.handleError(error);

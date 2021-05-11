@@ -83,7 +83,7 @@ export class UserComponent extends BaseComponent {
       this.authService.signup(this.credentials, false).subscribe(
         () => {
           this.handleSuccess(
-            "User has been created successfully!",
+            "Usuario creado con éxito!",
             true,
             "/admin/users"
           );
@@ -101,7 +101,7 @@ export class UserComponent extends BaseComponent {
       this.authService.update(this.credentials, false).subscribe(
         () => {
           this.handleSuccess(
-            "User has been updated successfully!",
+            "Usuario modificado con éxito!",
             true,
             "/admin/users"
           );

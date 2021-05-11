@@ -40,7 +40,7 @@ export class SignupComponent extends BaseComponent {
     this.credentials.email = user.email;
     this.authService.signup(this.credentials, true).subscribe(
       () => {
-        this.handleSuccess("Registration successful!", true, "/profile");
+        this.handleSuccess("Registrado con éxito!", true, "/profile");
       },
       error => {
         this.handleError(error);

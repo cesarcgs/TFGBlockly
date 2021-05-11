@@ -429,7 +429,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
       this.submissionService.createSubmission(submission).subscribe(
         newsubmission => {
           this.submitId = newsubmission._id;
-          this.handleSuccess("Your solution has been saved successfully.");
+          this.handleSuccess("Tu entrega se ha guardado con éxito.");
         },
         error => {
           this.handleError(error);
@@ -440,7 +440,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
       this.submissionService.updateSubmission(submission).subscribe(
         updatedsubmission => {
           this.submitId = updatedsubmission._id;
-          this.handleSuccess("Your solution has been updated successfully.");
+          this.handleSuccess("Tu entrega se ha actualziado correctamente.");
         },
         error => {
           this.handleError(error);
@@ -484,32 +484,35 @@ export class AlgorithmQuestionComponent extends BaseComponent {
           this.printLog(response.message);
           this.userResult = "Por favor, entrega una solución válida para ver el resultado";
           this.userResultIntro = "Aquí podrás ver el resultado de tu código para los casos de prueba que aparecen en la descripción";
-
+          
           if (response.status === "pass") {//si ha acertado
             this.resultMessage = response.message.split('\n')[0];
             this.userResultIntro = response.message.split('\n')[1];
-            this.userResult = response.message.split(':\n')[1]
-            this.userResult = this.userResult.substring(0, this.userResult.length - 1).replace('\n', '');
-
-
-            // this.userResult = response.message.substring(56);
-            // this.userResult = this.userResult.replace('\n', '');
-            // this.userResultIntro = response.message.substring(43, 56);
-            // this.resultMessage = response.message.substring(0, 43);
+            if(environment.production){
+              this.userResult = response.message.split(':\n')[1];
+            } else{
+              this.userResult = response.message.split(':\r\n')[1];
+            }
+            this.userResult.substring(0, this.userResult.length - 1)
+            //.replace('\n', '');
             this.handleSuccess2(response.message);
             this.testResult = 10;
           } 
           else {
             if(response.message[0] !== 'E'){ //si ha sido respuesta incorrecta pero compila
-              this.userResult = response.message.substring(43); 
-              this.userResult = this.userResult.replace('\n', '');
-              this.userResultIntro = response.message.substring(30, 43);
-              this.resultMessage = response.message.substring(0, 30); 
+              this.resultMessage = response.message.split('\n')[0];
+              this.userResultIntro = response.message.split('\n')[1];
+              if(environment.production){
+                this.userResult = response.message.split(':\n')[1];
+              } else{
+                this.userResult = response.message.split(':\r\n')[1];
+              }
+              this.userResult.substring(0, this.userResult.length - 1)
               this.handleError2(response.message);
               this.testResult = 20;
             }
             else {
-              this.resultMessage = response.message.substring(0, 34); 
+              this.resultMessage = response.message.split('\n')[0];
               this.handleError2(response.message);
               this.testResult = 20;
             }
