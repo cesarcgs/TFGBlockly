@@ -52,7 +52,7 @@ export class DatabaseComponent extends RootComponent {
     this.asyncBegin();
     this.databaseSerivce.getCollections().subscribe(
       collections => {
-        let list = [{ value: "noselect", name: "--No Selection--" }];
+        let list = [{ value: "noselect", name: "-- Selecciona --" }];
         let names = collections.map(val => ({
           value: val.name,
           name: val.name
@@ -172,7 +172,7 @@ export class DatabaseComponent extends RootComponent {
     this.databaseSerivce.importData(formData).subscribe(
       data => {
         this.alertService.success(
-          this.collection + " have been successfully uploaded. "
+          this.collection + " ha sido correctamente importada. "
         );
         this.asyncEnd();
         this.clearFile();
@@ -216,7 +216,7 @@ export class DatabaseComponent extends RootComponent {
       this.userService.deleteUserById(id).subscribe(
         successCode => {
           this.asyncEnd();
-          this.alertService.success("User has been deleted successfully.");
+          this.alertService.success("Usuario eliminado correctamente.");
           this.getData(name);
         },
         error => {
@@ -227,7 +227,7 @@ export class DatabaseComponent extends RootComponent {
       this.questionService.deleteQuestionById(id).subscribe(
         successCode => {
           this.asyncEnd();
-          this.alertService.success("Question has been deleted successfully.");
+          this.alertService.success("Problema eliminado correctamente.");
           this.getData(name);
         },
         error => {
@@ -239,7 +239,7 @@ export class DatabaseComponent extends RootComponent {
         successCode => {
           this.asyncEnd();
           this.alertService.success(
-            "Submission has been deleted successfully."
+            "Entrega eliminada coreectamente."
           );
           this.getData(name);
         },

@@ -16,55 +16,67 @@ export class AlgorithmQuestionsComponent extends BaseComponent {
   ngOnInit() {
 
     this.username = this.authService.getUserName();
-    this.getSubmissions(this.username); 
+    if (this.username === "") {
+      this.getQuestions(this.username);
+    }
+    else {
+      this.getSubmissions(this.username);
+    }
   }
-  
-  ngAfterContentInit() {//aqui hay que meter una pinky promise
+
+  ngAfterContentInit() {
   }
   getSubmissions(username: any) {
     this.submissionService.getSubmissionsByOneUser(username).subscribe(
       data => {
         this.submissions = data;
-        this.getQuestions();
-      },
-      error => {
-        console.log(error);
-      }
-      );
-    }
-    
-    //Fetch all questions
-    getQuestions() {
-      this.submissionService.getQuestions().subscribe(
-        data => {
-          let i = 0;
-          this.questions = data;
-          let estado: string; //ni, i, res -- no intentado, intentado, resuelto
-          console.log(this.submissions);
-          for(var question of this.questions) {//iteramos todas las questions
-            estado = "ni";
-            while(i < this.submissions.length){
-              if(question.uniquename === this.submissions[i].questionname) {//si el usuario ha tenido una submission para esa pregunta
-                if(this.submissions[i].status === "fail") {
-                  estado = "i";
-                  i++;
-                  break;
-                }
-                else if (this.submissions[i].status === "pass"){
-                  estado = "res";
-                  i++;
-                  break;
-                }
-              } 
-              i++;
-            }
-            this.doneList.push(estado);
-          }
-          console.log(this.doneList);
+        this.getQuestions(username);
       },
       error => {
         console.log(error);
       }
     );
+  }
+
+  //Fetch all questions
+  getQuestions(username: any) {
+    this.submissionService.getQuestions().subscribe(
+      data => {
+        this.questions = data;
+        if (username !== "") {
+          this.showProgress();
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  showProgress() {
+    let i = 0;
+    let estado: string; //ni, i, res -- no intentado, intentado, resuelto
+    console.log(this.submissions);
+    for (var question of this.questions) {//iteramos todas las questions
+      estado = "ni";
+      while (i < this.submissions.length) {
+        if (question.uniquename === this.submissions[i].questionname) {//si el usuario ha tenido una submission para esa pregunta
+          if (this.submissions[i].status === "fail") {
+            estado = "i";
+            i++;
+            break;
+          }
+          else if (this.submissions[i].status === "pass") {
+            estado = "res";
+            i++;
+            break;
+          }
+        }
+        i++;
+      }
+      this.doneList.push(estado);
+    }
+    console.log(this.doneList);
+
   }
 }

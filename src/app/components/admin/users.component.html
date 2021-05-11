@@ -5,12 +5,12 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>User ID</th>
-        <th>User Name</th>
+        <th>ID Usuario</th>
+        <th>Nombre de Usuario</th>
         <th>Email</th>
-        <th>Role</th>
-        <th>Time Created</th>
-        <th>Operations</th>
+        <th>Rol</th>
+        <th>Fecha de Creación</th>
+        <th>Operaciones</th>
       </tr>
     </thead>
     <tbody>
@@ -21,41 +21,41 @@
         <td>{{user.role}}</td>
         <td>{{user.timecreated | date : "yyyy/MM/dd hh:mm:ss" }}</td>
         <td>
-          <button type="button" class="btn btn-primary" [routerLink]="['/admin/user', user._id ]">Edit</button>
-          <button type="button" class="btn btn-warning" (click)="openResetPWdModal(resetPwd, user._id)">Reset Password</button>
-          <button type="button" class="btn btn-danger" (click)="openModal(confirmDlg, user._id)">Delete</button>
+          <button type="button" class="btn btn-primary" [routerLink]="['/admin/user', user._id ]">Editar</button>
+          <button type="button" class="btn btn-warning" (click)="openResetPWdModal(resetPwd, user._id)">Resetear Contraseña</button>
+          <button type="button" class="btn btn-danger" (click)="openModal(confirmDlg, user._id)">Borrar</button>
         </td>
       </tr>
     </tbody>
   </table>
   <ng-template #confirmDlg>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Delete User</h4>
+      <h4 class="modal-title pull-left">Borrar Usuario</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="decline()">
                   <span aria-hidden="true">&times;</span>
                 </button>
     </div>
     <div class="modal-body">
-      <p>Are you sure to delete this user?</p>
+      <p>¿Seguro que quieres borrar este usuario?</p>
     </div>
     <div class="modal-footer">
-      <button type="button" [disabled]="loading" class="btn btn-default" (click)="confirm()">Yes</button>
+      <button type="button" [disabled]="loading" class="btn btn-default" (click)="confirm()">Sí</button>
       <app-widget-loading-image [loading]="loading"></app-widget-loading-image>
       <button type="button" class="btn btn-primary" (click)="decline()">No</button>
     </div>
   </ng-template>
   <ng-template #resetPwd>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Reset Password</h4>
+      <h4 class="modal-title pull-left">Resetear Contraseña</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="declineResetPwd()">
                     <span aria-hidden="true">&times;</span>
                   </button>
     </div>
     <div class="modal-body">
-      <p>Are you sure to reset password for this user?</p>
+      <p>¿Seguro que quieres borrar esta contraseña?</p>
     </div>
     <div class="modal-footer">
-      <button type="button" [disabled]="loading" class="btn btn-default" (click)="confirmResetPwd()">Yes</button>
+      <button type="button" [disabled]="loading" class="btn btn-default" (click)="confirmResetPwd()">Sí</button>
       <app-widget-loading-image [loading]="loading"></app-widget-loading-image>
       <button type="button" class="btn btn-primary" (click)="declineResetPwd()">No</button>
     </div>

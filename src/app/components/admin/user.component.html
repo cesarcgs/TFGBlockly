@@ -1,51 +1,51 @@
 <div class="container">
-  <h2 *ngIf="!_id">Create New User</h2>
-  <h2 *ngIf="_id">Edit User</h2>
+  <h2 *ngIf="!_id">Crear nuevo Usuario</h2>
+  <h2 *ngIf="_id">Editar Usuario</h2>
   <hr/>
   <form class="form-horizontal" [formGroup]="baseForm" (ngSubmit)="onSubmit()">
     <div *ngIf="_id" class="form-group">
-      <label class="control-label col-sm-2" for="_id">User ID:</label>
+      <label class="control-label col-sm-2" for="_id">ID de Usuario:</label>
       <div class="col-sm-4">
         <input class="form-control" readonly type="text" name="_id" formControlName="_id" />
       </div>
     </div>
     <div class="form-group" [ngClass]="displayFieldCss('username')">
-      <label class="control-label col-sm-2 required" for="username">User Name:</label>
+      <label class="control-label col-sm-2 required" for="username">Nombre de Usuario:</label>
       <div class="col-sm-4">
-        <input type="text" class="form-control" name="username" placeholder="Enter user name" formControlName="username">
-        <app-widget-validation-message [displayError]="isFieldValid('username')" errorMsg="Please enter a user name with at least 3 characters">
+        <input type="text" class="form-control" name="username" placeholder="Introduce el nombre de usuario" formControlName="username">
+        <app-widget-validation-message [displayError]="isFieldValid('username')" errorMsg="Por favor, introduce un nombre de usuario con al menos 3 caracteres">
         </app-widget-validation-message>
       </div>
     </div>
     <div *ngIf="!_id" class="form-group" [ngClass]="displayFieldCss('password')">
-      <label class="control-label col-sm-2 required" for="password">Password:</label>
+      <label class="control-label col-sm-2 required" for="password">Contraseña:</label>
       <div class="col-sm-4">
-        <input type="password" class="form-control" name="password" placeholder="Enter password" formControlName="password">
-        <app-widget-validation-message [displayError]="isFieldValid('password')" errorMsg="Please enter a password with at least 6 characters">
+        <input type="password" class="form-control" name="password" placeholder="Introduce la contraseña" formControlName="password">
+        <app-widget-validation-message [displayError]="isFieldValid('password')" errorMsg="Por favor, introduce una contraseña de al menos 6 caracteres">
         </app-widget-validation-message>
       </div>
     </div>
     <div class="form-group" [ngClass]="displayFieldCss('email')">
       <label class="control-label col-sm-2 required" for="email">Email:</label>
       <div class="col-sm-4">
-        <input type="email" class="form-control" name="email" placeholder="Enter email" formControlName="email">
-        <app-widget-validation-message [displayError]="isFieldValid('email')" errorMsg="Please enter a valid email address">
+        <input type="email" class="form-control" name="email" placeholder="Introduce el email" formControlName="email">
+        <app-widget-validation-message [displayError]="isFieldValid('email')" errorMsg="Por favor, introduce un email válido">
         </app-widget-validation-message>
       </div>
     </div>
     <div class="form-group" [ngClass]="displayFieldCss('role')">
-      <label class="control-label col-sm-2" for="role">Role:</label>
+      <label class="control-label col-sm-2" for="role">Rol:</label>
       <div class="col-sm-2">
         <app-widget-role-select [selectedValue]="selectedRole" name="role" formControlName="role" ngDefaultControl></app-widget-role-select>
-        <app-widget-validation-message [displayError]="isFieldValid('role')" errorMsg="Please specify role">
+        <app-widget-validation-message [displayError]="isFieldValid('role')" errorMsg="Por favor, especifica un rol">
         </app-widget-validation-message>
       </div>
     </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <input type="submit" [disabled]="loading" class="btn btn-success" value="Save">
+        <input type="submit" [disabled]="loading" class="btn btn-success" value="Guardar">
         <app-widget-loading-image [loading]="isLoading()"></app-widget-loading-image>
-        <button type="button" [disabled]="loading" class="btn btn-info" (click)="back('/admin/users')">Cancel</button>
+        <button type="button" [disabled]="loading" class="btn btn-info" (click)="back('/admin/users')">Cancelar</button>
       </div>
     </div>
   </form>
