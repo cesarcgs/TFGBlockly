@@ -22,11 +22,11 @@ passport.use(
         }
         // Return if user not found in database
         if (!user) {
-          return done(null, false, "User not found");
+          return done(null, false, "Usuario no encontrado");
         }
         // Return if password is wrong
         if (!user.validPassword(password)) {
-          return done(null, false, "Password is not match");
+          return done(null, false, "Contraseña incorrecta");
         }
         // If credentials are correct, return the user object
         return done(null, user);
@@ -51,15 +51,15 @@ passport.use(
         }
         // Return if user not found in database
         if (!user) {
-          return done(null, false, "User not found");
+          return done(null, false, "Usu8ario no encontrado");
         }
         //console.log("user:", user);
         // Return if password is wrong
         if (!user.hash === jwtPayload.hash) {
-          return done(null, false, "Password is not match");
+          return done(null, false, "Contraseña incorrecta");
         }
         if (!user.validRole()) {
-          return done(null, false, "No authorization");
+          return done(null, false, "Sin autorización");
         }
         // If credentials are correct, return the user object
         return done(null, user);

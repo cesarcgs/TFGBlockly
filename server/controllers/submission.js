@@ -246,7 +246,7 @@ exports.submission_allsubs = function(req, res, next) {
     username: strname,
     status: { $ne: "initial" }
   })
-    .sort({ questionname: "asc" }).sort({status: "desc"})
+    .sort({ status: "desc" }).sort({questionname: "asc"})
     .exec(function(err, submissions) {
       if (err) return next(err);
       res.status(200).send(submissions);

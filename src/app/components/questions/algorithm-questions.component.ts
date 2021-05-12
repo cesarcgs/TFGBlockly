@@ -54,25 +54,31 @@ export class AlgorithmQuestionsComponent extends BaseComponent {
   }
 
   showProgress() {
-    let i = 0;
+    let i = 0, j = 0;
     let estado: string; //ni, i, res -- no intentado, intentado, resuelto
-    console.log(this.submissions);
+    //console.log(this.submissions);
     for (var question of this.questions) {//iteramos todas las questions
       estado = "ni";
       while (i < this.submissions.length) {
-        if (question.uniquename === this.submissions[i].questionname) {//si el usuario ha tenido una submission para esa pregunta
+        if (question.uniquename === this.submissions[i].questionname) { //si el usuario ha tenido una submission para esa pregunta
           if (this.submissions[i].status === "fail") {
             estado = "i";
             i++;
+            j = i;
             break;
           }
           else if (this.submissions[i].status === "pass") {
             estado = "res";
             i++;
+            j = i;
             break;
           }
         }
         i++;
+        if(i == this.submissions.length) {
+          i = j;
+          break;
+        }
       }
       this.doneList.push(estado);
     }

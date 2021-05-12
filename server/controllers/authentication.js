@@ -33,7 +33,7 @@ module.exports.signup = function(req, res) {
         "body",
         "username",
         newuser.username,
-        "User Name is existed!"
+        "Nombre de Usuario ya en uso!"
       );
       res.status(422).json({ errors: [error] });
     } else {
@@ -43,7 +43,7 @@ module.exports.signup = function(req, res) {
             "body",
             "username",
             newuser.email,
-            "Email is existed!"
+            "Email ya en uso!"
           );
           res.status(422).json({ errors: [error] });
         } else {
@@ -84,11 +84,11 @@ module.exports.autologin = function(req, res) {
         }
         // Return if user not found in database
         if (!user) {
-          res.status(200).send("User not found");
+          res.status(200).send("Usuario no encontrado");
         }
         // Return if password is wrong
         if (user.hash != userDetails.hash) {
-          res.status(200).send("Password is invalid");
+          res.status(200).send("Contraseña incorrecta");
         }
         // If credentials are correct, return the user object
         // If a user is found
@@ -141,7 +141,7 @@ module.exports.login = function(req, res) {
         
         res.cookie("cookieToken", token, { maxAge: 900000 }); //expires after 900000 ms = 15 minutes
       }
-      console.log(res);
+      //console.log(res);
       res.status(200);
       res.json({
         token: token

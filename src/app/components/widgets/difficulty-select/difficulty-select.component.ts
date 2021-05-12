@@ -15,15 +15,15 @@ export class DifficultySelectComponent implements OnInit {
   options = [
     {
       value: 10,
-      name: "Easy"
+      name: "Fácil"
     },
     {
       value: 20,
-      name: "Medium"
+      name: "Medio"
     },
     {
       value: 30,
-      name: "Hard"
+      name: "Díficil"
     }
   ];
 }
