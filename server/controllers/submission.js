@@ -94,27 +94,6 @@ exports.question_findByKeys = function(req, res, next) {
           if (err) {
             return next(err);
           }
-          // if (submissions) {
-          //   // replace the solution in question with user's submission
-          //   for (var i = 0; i < submissions.length; i++) {
-          //     const submission = submissions[i];
-          //     if (submission.language == "java") {
-          //       if (submission.status == "initial") {
-          //         retq.id1 = submission._id;
-          //       }
-          //     } else if (submission.language == "javascript") {
-          //       if (submission.status == "initial") {
-          //         retq.id2 = submission._id;
-          //       }
-          //     } else if (submission.language == "python") {
-          //       if (submission.status == "initial") {
-          //         retq.id3 = submission._id;
-          //       }
-          //     }
-          //   }
-          // }
-          //console.log(retq.id1);
-          //console.log(retq);
           res.status(200).send(retq);
         }
       );
