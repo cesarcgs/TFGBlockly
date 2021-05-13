@@ -2,11 +2,7 @@ language: node_js
 node_js:
   - "14"
 sudo: false
- 
-branches:
-  only:
-  - Master
- 
+
 cache:
   directories:
     - node_modules
