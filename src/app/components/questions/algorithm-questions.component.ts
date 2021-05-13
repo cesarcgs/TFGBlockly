@@ -10,6 +10,7 @@ import { BaseComponent } from "../base.component";
 export class AlgorithmQuestionsComponent extends BaseComponent {
   //constructor(private submissionService: SubmissionService) {} esto no me suena bien
   questions;
+  questionscheck;
   submissions;
   username;
   doneList: Array<string> = [];
@@ -24,8 +25,6 @@ export class AlgorithmQuestionsComponent extends BaseComponent {
     }
   }
 
-  ngAfterContentInit() {
-  }
   getSubmissions(username: any) {
     this.submissionService.getSubmissionsByOneUser(username).subscribe(
       data => {
@@ -40,12 +39,23 @@ export class AlgorithmQuestionsComponent extends BaseComponent {
 
   //Fetch all questions
   getQuestions(username: any) {
-    this.submissionService.getQuestions().subscribe(
+    this.submissionService.getQuestionsCheck().subscribe(
       data => {
-        this.questions = data;
+        this.questionscheck = data;
         if (username !== "") {
           this.showProgress();
         }
+        this.submissionService.getQuestions().subscribe(
+          data => {
+            this.questions = data;
+            if (username !== "") {
+              this.showProgress();
+            }
+          },
+          error => {
+            console.log(error);
+          }
+        );
       },
       error => {
         console.log(error);
@@ -57,7 +67,11 @@ export class AlgorithmQuestionsComponent extends BaseComponent {
     let i = 0, j = 0;
     let estado: string; //ni, i, res -- no intentado, intentado, resuelto
     console.log(this.submissions);
-    for (var question of this.questions) {//iteramos todas las questions
+    console.log(this.questions);
+    for (var question of this.questionscheck) {
+      this.doneList.push();//populate array
+    }
+    for (var question of this.questionscheck) {//iteramos todas las questions
       estado = "ni";
       while (i < this.submissions.length) {
         if (question.uniquename === this.submissions[i].questionname) { //si el usuario ha tenido una submission para esa pregunta
@@ -80,7 +94,7 @@ export class AlgorithmQuestionsComponent extends BaseComponent {
           break;
         }
       }
-      this.doneList.push(estado);
+      this.doneList[question.sequence - 1] = estado;
     }
     console.log(this.doneList);
 
