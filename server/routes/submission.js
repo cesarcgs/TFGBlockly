@@ -5,6 +5,7 @@ var submission_controller = require("../controllers/submission");
 
 // questions
 router.get("/questions", submission_controller.question_all);
+router.get("/questions/checks", submission_controller.question_allchecks);
 router.get("/question/:keys", submission_controller.question_findByKeys);
 
 // submissions

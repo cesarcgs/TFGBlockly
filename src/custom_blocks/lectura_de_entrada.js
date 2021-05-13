@@ -34,7 +34,7 @@ Blockly.Python['input_variable_int'] = function(block) {
 
 Blockly.Python['input_variable_string'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
-  var code = 'str(f.readline())';
+  var code = "str(f.readline()).replace('\\n', '')";
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_NONE];
 };

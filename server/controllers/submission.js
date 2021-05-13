@@ -16,6 +16,15 @@ exports.question_all = function(req, res, next) {
       res.status(200).send(questions);
     });
 };
+exports.question_allchecks = function(req, res, next) {
+  SleepUtil.sleep();
+  Question.find({})
+    .sort({ uniquename: "asc" })
+    .exec(function(err, questions) {
+      if (err) return next(err);
+      res.status(200).send(questions);
+    });
+};
 
 exports.question_findByKeys = function(req, res, next) {
   SleepUtil.sleep();
@@ -39,7 +48,7 @@ exports.question_findByKeys = function(req, res, next) {
         "body",
         "uniquename",
         req.params.uniquename,
-        "No question is found!"
+        "Ninguna pregunta encontrada!"
       );
       res.status(422).json({ errors: [error] });
     }

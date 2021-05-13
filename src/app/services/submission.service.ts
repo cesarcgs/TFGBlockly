@@ -18,6 +18,9 @@ export class SubmissionService {
   getQuestions(): Observable<QuestionExt[]> {
     return this.http.get<QuestionExt[]>(this.apiUrl + "/questions");
   }
+  getQuestionsCheck(): Observable<QuestionExt[]> {
+    return this.http.get<QuestionExt[]>(this.apiUrl + "/questions/checks");
+  }
   //Fetch question by unique name
   getQuestionByKeys(qname: string, uname: string): Observable<QuestionExt> {
     return this.http.get<QuestionExt>(
