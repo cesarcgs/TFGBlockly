@@ -1,9 +1,5 @@
 const path = require("path");
 const FileApi = require("../api/FileApi");
-const CRunner = require("./CRunner");
-const CppRunner = require("./CppRunner");
-const JavaRunner = require("./JavaRunner");
-const JavaScriptRunner = require("./JavaScriptRunner");
 const PythonRunner = require("./PythonRunner");
 const appRoot = require("app-root-path");
 const moment = require("moment");
@@ -54,7 +50,6 @@ module.exports = {
           if (err) {
             callback("99", String(err)); // 99, system error
           }
-          // save the solution to Solution.java
           const sourceFile = path.resolve(targetDir, runner.sourceFile());
           console.log(`source file: ${sourceFile}`);
           console.log(`Target dir: ${targetDir}`);

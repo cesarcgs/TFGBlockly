@@ -16,6 +16,15 @@ exports.question_all = function(req, res, next) {
       res.status(200).send(questions);
     });
 };
+exports.question_allchecks = function(req, res, next) {
+  SleepUtil.sleep();
+  Question.find({})
+    .sort({ uniquename: "asc" })
+    .exec(function(err, questions) {
+      if (err) return next(err);
+      res.status(200).send(questions);
+    });
+};
 
 exports.question_findByKeys = function(req, res, next) {
   SleepUtil.sleep();
@@ -39,7 +48,7 @@ exports.question_findByKeys = function(req, res, next) {
         "body",
         "uniquename",
         req.params.uniquename,
-        "No question is found!"
+        "Ninguna pregunta encontrada!"
       );
       res.status(422).json({ errors: [error] });
     }
@@ -94,27 +103,6 @@ exports.question_findByKeys = function(req, res, next) {
           if (err) {
             return next(err);
           }
-          // if (submissions) {
-          //   // replace the solution in question with user's submission
-          //   for (var i = 0; i < submissions.length; i++) {
-          //     const submission = submissions[i];
-          //     if (submission.language == "java") {
-          //       if (submission.status == "initial") {
-          //         retq.id1 = submission._id;
-          //       }
-          //     } else if (submission.language == "javascript") {
-          //       if (submission.status == "initial") {
-          //         retq.id2 = submission._id;
-          //       }
-          //     } else if (submission.language == "python") {
-          //       if (submission.status == "initial") {
-          //         retq.id3 = submission._id;
-          //       }
-          //     }
-          //   }
-          // }
-          //console.log(retq.id1);
-          //console.log(retq);
           res.status(200).send(retq);
         }
       );
@@ -267,7 +255,7 @@ exports.submission_allsubs = function(req, res, next) {
     username: strname,
     status: { $ne: "initial" }
   })
-    .sort({ questionname: "asc" }).sort({status: "desc"})
+    .sort({ status: "desc" }).sort({questionname: "asc"})
     .exec(function(err, submissions) {
       if (err) return next(err);
       res.status(200).send(submissions);

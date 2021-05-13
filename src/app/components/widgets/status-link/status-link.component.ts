@@ -27,9 +27,9 @@ export class StatusLinkComponent implements OnInit {
 
   getText() {
     if (this.testResult === "pass") {
-      return "Accepted";
+      return "Superado";
     } else {
-      return "Wrong Answer";
+      return "Respuesta incorrecta";
     }
   }
 

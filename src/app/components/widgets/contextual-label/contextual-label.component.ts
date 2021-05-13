@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from "@angular/core";
   styleUrls: ["./contextual-label.component.css"]
 })
 export class ContextualLabelComponent implements OnInit {
-  options = { 10: "Easy", 20: "Medium", 30: "Hard" };
+  options = { 10: "Fácil", 20: "Medio", 30: "Difícil" };
 
   constructor() {}
 
