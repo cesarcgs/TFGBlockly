@@ -19,6 +19,4 @@ deploy:
     secure: $HEROKU_API_KEY
   app: tfg-blockly-api
   on:
-    branches: 
-      only:
-        - master
+    branch: master
