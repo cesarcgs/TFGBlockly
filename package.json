@@ -3,16 +3,16 @@
   "version": "1.0.0",
   "contributors": [
     {
-    "name": "Guzman Garrido Alique",
-    "email": "guzmanga@ucm.es"
+      "name": "Guzman Garrido Alique",
+      "email": "guzmanga@ucm.es"
     },
     {
-    "name": "Cesar Garza Sanchez",
-    "email": "cesarcga@ucm.es"
+      "name": "Cesar Garza Sanchez",
+      "email": "cesarcga@ucm.es"
     },
     {
-    "name": "Jesus Sanchez Couto",
-    "email": "jesusasa@ucm.es"
+      "name": "Jesus Sanchez Couto",
+      "email": "jesusasa@ucm.es"
     }
   ],
   "license": "MIT",
