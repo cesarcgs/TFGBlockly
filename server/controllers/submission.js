@@ -39,7 +39,7 @@ exports.question_findByKeys = function(req, res, next) {
         "body",
         "uniquename",
         req.params.uniquename,
-        "No question is found!"
+        "Ninguna pregunta encontrada!"
       );
       res.status(422).json({ errors: [error] });
     }

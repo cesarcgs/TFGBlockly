@@ -56,7 +56,7 @@ export class AlgorithmQuestionsComponent extends BaseComponent {
   showProgress() {
     let i = 0, j = 0;
     let estado: string; //ni, i, res -- no intentado, intentado, resuelto
-    //console.log(this.submissions);
+    console.log(this.submissions);
     for (var question of this.questions) {//iteramos todas las questions
       estado = "ni";
       while (i < this.submissions.length) {
