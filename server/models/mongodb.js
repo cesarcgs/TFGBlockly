@@ -13,6 +13,7 @@ if (process.env.NODE_ENV === "production") {
   dbURI = process.env.MONGOLAB_URI;
 }
 console.log("dbURI:", dbURI);
+console.log("node_env:", process.env.NODE_ENV);
 mongoose.connect(dbURI);
 
 // Get collection names
