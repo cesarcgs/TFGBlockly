@@ -3,9 +3,6 @@ node_js:
   - "14"
 sudo: false
 
-script: 
-  - npm start
-
 branches:
   only:
   - Master
