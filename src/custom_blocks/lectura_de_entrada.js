@@ -27,14 +27,14 @@
   };
 Blockly.Python['input_variable_int'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
-  var code = 'int(f.readline())';
+  var code = 'int(fileTestCase.readline())';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_NONE];
 };
 
 Blockly.Python['input_variable_string'] = function(block) {
   // TODO: Assemble JavaScript into code variable.
-  var code = "str(f.readline()).replace('\\n', '')";
+  var code = "str(fileTestCase.readline()).replace('\\n', '')";
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_NONE];
 };
