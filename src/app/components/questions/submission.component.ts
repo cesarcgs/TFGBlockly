@@ -4,6 +4,8 @@ import { Question, Submission } from "../../models";
 import { BaseComponent } from "../base.component";
 import { environment } from "../../../environments/environment";
 
+declare var Blockly: any;
+
 @Component({
   selector: "app-submission",
   styleUrls: ["submission.component.css"],
@@ -15,9 +17,12 @@ export class SubmissionComponent extends BaseComponent {
   language;
   timesubmitted;
   status;
+  workspace;
+  toolbox = "";
 
-  editorOptions1 = { theme: "vs", language: "java", readOnly: true };
+  editorOptions1 = { theme: "vs", language: "python", readOnly: true };
   code1: string = "";
+  code2: string = "";
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get("id");
@@ -30,11 +35,18 @@ export class SubmissionComponent extends BaseComponent {
           this.questionname = submission.questionname;
           this.timesubmitted = submission.timesubmitted;
           this.status = submission.status;
-          this.code1 = submission.solution;
-          // check editor language
-          // this.editorOptions1 = Object.assign({}, this.editorOptions1, {
-          //   language: "python"
-          // });
+          this.code2 = submission.solutionBlockly;
+
+          this.workspace = Blockly.inject('blocklyDiv', {
+            toolbox: this.toolbox, 
+            scrollbars: true,
+            readOnly: true
+          });
+          
+          var xml = Blockly.Xml.textToDom(this.code2);
+          Blockly.Xml.domToWorkspace(this.workspace, xml);
+          this.code1 = Blockly.Python.workspaceToCode(this.workspace);
+
           this.asyncEnd();
         },
         error => {

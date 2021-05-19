@@ -93,6 +93,7 @@ exports.question_findByKeys = function(req, res, next) {
               username: "$latest.username",
               questionname: "$latest.questionname",
               solution: "$latest.solution",
+              solutionBlockly: "$latest.solutionBlockly",
               status: "$latest.status",
               timesubmitted: "$latest.timesubmitted",
               runtime: "$latest.runtime"
@@ -120,6 +121,7 @@ exports.submission_create = function(req, res, next) {
     username: req.body.username,
     questionname: req.body.questionname,
     solution: req.body.solution,
+    solutionBlockly: req.body.solutionBlockly,
     status: "initial", // not submitted -> just created
     timesubmitted: null,
     runtime: 0
@@ -143,37 +145,6 @@ exports.submission_readone = function(req, res, next) {
   });
 };
 
-exports.submission_update = function(req, res, next) {
-  SleepUtil.sleep();
-  var upd = {
-    username: req.body.username,
-    questionname: req.body.questionname,
-    solution: req.body.solution,
-    status: "initial",
-  };
-
-  Submission.findOne({ _id: req.params.id }, function(err, submission) {
-    if (err) {
-      return next(err);
-    }
-    if (submission && submission.status != "initial") {
-      var error = ErrorUtil.buildError(
-        "Can't update solution which has already been submitted!"
-      );
-      return res.status(422).json({ errors: [error] });
-    } else {
-      Submission.findByIdAndUpdate(
-        req.params.id,
-        { $set: upd },
-        { new: true },
-        function(err, submission) {
-          if (err) return next(err);
-          res.status(200).send(submission);
-        }
-      );
-    }
-  });
-};
 
 exports.submission_findByKeys = function(req, res, next) {
   SleepUtil.sleep();
@@ -269,6 +240,7 @@ exports.submission_run = function(req, res, next) {
     username: req.body.username,
     questionname: req.body.questionname,
     solution: req.body.solution,
+    solutionBlockly: req.body.solutionBlockly,
     status: "initial", // not submitted -> just created
     timesubmitted: moment(new Date(Date.now())),
     runtime: 0
