@@ -5,6 +5,7 @@ var SubmissionSchema = new Schema({
   username: { type: String, required: true, max: 100 },
   questionname: { type: String, required: true, max: 100 },
   solution: { type: String, required: true },
+  solutionBlockly: { type: String, required: true },
   status: {
     type: String,
     enum: ["initial", "pass", "fail"],

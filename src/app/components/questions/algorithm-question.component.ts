@@ -361,6 +361,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
 
   async ngOnInit() {
     
+    let codeBlocklyXml = "";
     console.log("environment", environment);
     this.tab = "description";
     this,this.userResultIntro= "Aquí podrás ver el resultado de tu código para los casos de prueba que aparecen en la descripción";
@@ -390,62 +391,30 @@ export class AlgorithmQuestionComponent extends BaseComponent {
               toolbox: this.toolbox, 
               scrollbars: false
             }); 
+            
+            
+            const query = window.location.search;
+            const urlParams = new URLSearchParams(query);
+            if(urlParams.get("sub_id")){
+              this.submissionService.getSubmissionById(urlParams.get("sub_id")).subscribe(
+                submission => {
+                  if(submission != null){
+                    codeBlocklyXml = submission.solutionBlockly;
+                    var xml = Blockly.Xml.textToDom(codeBlocklyXml);
+                    Blockly.Xml.domToWorkspace(xml, this.workspace);
+                  }
+                },
+                error => {
+                  this.handleError(error);
+                }
+                );
+              }
             this.asyncEnd();
           },
           error => {
             this.handleError(error);
           }
         );
-    }
-  }
-
-  onSave() {
-    this.testResult = -1;
-    if (!this.validate()) {
-      return;
-    }
-
-    //Form is valid, now perform create or update
-    let question = this.baseForm.value;
-    this.printLog(question);
-
-    let id = "";
-    let solution = "";
-    id = this.submitId;
-    solution = this.code;
-    let submission = new Submission(
-      id,
-      this.username,
-      this.uniquename,
-      solution,
-      "initial",
-      new Date(),
-      0
-    );
-    this.printLog(submission);
-
-    if (id == null || id == "") {
-      //Create question
-      this.submissionService.createSubmission(submission).subscribe(
-        newsubmission => {
-          this.submitId = newsubmission._id;
-          this.handleSuccess("Tu entrega se ha guardado con éxito.");
-        },
-        error => {
-          this.handleError(error);
-        }
-      );
-    } else {
-      //Update question
-      this.submissionService.updateSubmission(submission).subscribe(
-        updatedsubmission => {
-          this.submitId = updatedsubmission._id;
-          this.handleSuccess("Tu entrega se ha actualziado correctamente.");
-        },
-        error => {
-          this.handleError(error);
-        }
-      );
     }
   }
 
@@ -465,6 +434,9 @@ export class AlgorithmQuestionComponent extends BaseComponent {
     solution = solution + Blockly.Python.workspaceToCode(this.workspace).replaceAll('\n', '\n\t\t\t');
     solution = solution + ("\n\t\tsys.stdout.close()\n\t\tsys.stdout = og_stdout\n\t\tfileTestCase.close()")
     
+    let xmlBlockly = Blockly.Xml.workspaceToDom(this.workspace);
+    let solutionBlockly = Blockly.Xml.domToText(xmlBlockly);
+    
     this.printLog(solution);
     this.printLog(this.submitId);
     let submission = new Submission(
@@ -472,6 +444,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
       this.username,
       this.uniquename,
       solution,
+      solutionBlockly,
       "initial",
       new Date(),
       0

@@ -13,7 +13,6 @@ router.post("/", submission_controller.submission_create);
 
 router.get("/:id", submission_controller.submission_readone);
 
-router.put("/:id", submission_controller.submission_update);
 
 router.delete("/:id", submission_controller.submission_delete);
 

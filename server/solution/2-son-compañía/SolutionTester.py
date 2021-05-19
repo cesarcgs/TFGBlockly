@@ -11,7 +11,7 @@ def main():
 		line1 = line1.replace("\n", "")
 		line2 = line2.replace("\n", "")
 	if line1.isdigit() and line2.isdigit() and (line1 == line2) and (len(line3) == 0):
-		print ("[Success]Tu solucion ha superado todos los casos!")
+		print ("[Success]Tu solución ha superado todos los casos!")
 	else:
 		print ("[Fail]Tu respuesta no es correcta")
 	print ("Tu respuesta:")

@@ -4,15 +4,21 @@
   <div>
     <div class="form-group submission">
       <div class="col-sm-4 submission-date">
-        Time Submitted: {{timesubmitted | date : "yyyy/MM/dd hh:mm:ss" }}
+        Fecha de Entrega: {{timesubmitted | date : "yyyy/MM/dd hh:mm:ss" }}
       </div>
       <div class="col-sm-4 submission-status">
-        Status:
+        Estado:
         <app-widget-status-link [testResult]="status"></app-widget-status-link>
+      </div>
+      <div class="col-sm-4 submission-retry">
+        <button type="submit" class="btn btn-primary" [routerLink]="['/question/', questionname]" [queryParams] = "{sub_id: id}">Editar</button>
       </div>
     </div>
     <div class="col-sm-12 code-editor-div">
       <ngx-monaco-editor class="solution-code-editor" [options]="editorOptions1" [(ngModel)]="code1"></ngx-monaco-editor>
     </div>
+    <div>
+      <div class="col-sm-12 code-editor-div" id="blocklyDiv" style="width: 100%; height: 300px"></div> 
+    <div>
     <hr />
   </div>
