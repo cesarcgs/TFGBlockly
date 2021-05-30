@@ -7,9 +7,10 @@ export class QuestionExt {
     public description: string,
     public solution: string,
     public difficulty: number,
-    public frequency: number,
     public hints: string,
     public parameters: string,
+    public fails: number,
+    public success: number,
     // ids for submissions
     public id1: string,
     public id2: string,

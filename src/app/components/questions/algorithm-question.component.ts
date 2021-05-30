@@ -459,6 +459,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
           this.userResultIntro = "Aquí podrás ver el resultado de tu código para los casos de prueba que aparecen en la descripción";
           
           if (response.status === "pass") {//si ha acertado
+
             this.resultMessage = response.message.split('\n')[0];
             this.userResultIntro = response.message.split('\n')[1];
             if(environment.production){
@@ -470,6 +471,26 @@ export class AlgorithmQuestionComponent extends BaseComponent {
             //.replace('\n', '');
             this.handleSuccess2(response.message);
             this.testResult = 10;
+            
+            this.submissionService
+            .getQuestionByKeys(this.uniquename, this.username)
+            .subscribe(
+              question => {
+                //ya tenemos la question entera
+                //la modificamos
+                question.success++;
+                //la devolvemos modificada
+                this.questionService.updateQuestion(question).subscribe(
+                  () => {},
+                  error => {
+                    this.handleError(error);
+                  }
+                );  
+              },
+              error => {
+                this.handleError(error);
+              }
+            );
           } 
           else {
             if(response.message[0] !== 'E'){ //si ha sido respuesta incorrecta pero compila
@@ -489,6 +510,25 @@ export class AlgorithmQuestionComponent extends BaseComponent {
               this.handleError2(response.message);
               this.testResult = 20;
             }
+            this.submissionService
+            .getQuestionByKeys(this.uniquename, this.username)
+            .subscribe(
+              question => {
+                //ya tenemos la question entera
+                //la modificamos
+                question.fails++;
+                //la devolvemos modificada
+                this.questionService.updateQuestion(question).subscribe(
+                  () => {},
+                  error => {
+                    this.handleError(error);
+                  }
+                );  
+              },
+              error => {
+                this.handleError(error);
+              }
+            );
         }
         // reset id to null to avoid update
         this.submitId = "";
