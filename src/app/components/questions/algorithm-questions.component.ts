@@ -14,6 +14,7 @@ export class AlgorithmQuestionsComponent extends BaseComponent {
   submissions;
   username;
   doneList: Array<string> = [];
+  freqList: Array<number> = [];
   ngOnInit() {
 
     this.username = this.authService.getUserName();
@@ -48,10 +49,7 @@ export class AlgorithmQuestionsComponent extends BaseComponent {
         this.submissionService.getQuestions().subscribe(
           data => {
             this.questions = data;
-            if (username !== "") {
-              this.showProgress();
-            }
-          },
+            },
           error => {
             console.log(error);
           }
@@ -66,10 +64,9 @@ export class AlgorithmQuestionsComponent extends BaseComponent {
   showProgress() {
     let i = 0, j = 0;
     let estado: string; //ni, i, res -- no intentado, intentado, resuelto
-    console.log(this.submissions);
-    console.log(this.questions);
     for (var question of this.questionscheck) {
       this.doneList.push();//populate array
+      this.freqList.push();
     }
     for (var question of this.questionscheck) {//iteramos todas las questions
       estado = "ni";
@@ -94,9 +91,12 @@ export class AlgorithmQuestionsComponent extends BaseComponent {
           break;
         }
       }
+      this.freqList[question.sequence - 1] = 100 * question.success / (question.fails + question.success);
       this.doneList[question.sequence - 1] = estado;
     }
     console.log(this.doneList);
+    console.log(this.freqList);
+    console.log("ey");
 
   }
 }

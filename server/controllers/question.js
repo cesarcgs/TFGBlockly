@@ -11,9 +11,10 @@ exports.question_create = function(req, res, next) {
     description: req.body.description,
     solution: req.body.solution,
     difficulty: req.body.difficulty,
-    frequency: req.body.frequency,
     hints: req.body.hints,
-    parameters: req.body.parameters
+    parameters: req.body.parameters,
+    fails: req.body.fails,
+    success: req.body.success
   });
 
   question.save({ new: true }, function(err, question) {
@@ -36,7 +37,7 @@ exports.question_readone = function(req, res, next) {
 
 exports.question_update = function(req, res, next) {
   SleepUtil.sleep();
-  console.log(req.body);
+  //console.log(req.body);
   Question.findByIdAndUpdate(
     req.params.id,
     { $set: req.body },

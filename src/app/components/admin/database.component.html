@@ -65,7 +65,7 @@
         <td>{{question.sequence}}</td>
         <td>{{question.title}}</td>
         <td>{{question.difficulty}}</td>
-        <td>{{question.frequency}}</td>
+        <td>{{question.success*100/(question.fails+question.success)}}</td>
         <td>
           <button type="button" class="btn btn-danger" (click)="delete('questions', question._id)">Borrar</button>
         </td>

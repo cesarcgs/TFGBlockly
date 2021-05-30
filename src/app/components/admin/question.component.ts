@@ -108,17 +108,10 @@ export class QuestionComponent extends BaseComponent {
         description: [null, [Validators.required]],
         parameters: ["none", [Validators.required]],
         difficulty: [10, [Validators.required]],
-        frequency: [
-          null,
-          [
-            Validators.required,
-            Validators.pattern("[0-9]+"),
-            Validators.min(0),
-            Validators.max(100)
-          ]
-        ],
         hints: [],
-        solution: []
+        solution: [],
+        fails: [0],
+        success:[0]
       });
       this.selectedValue = 10;
       //this.htmlContent = "";
@@ -131,10 +124,11 @@ export class QuestionComponent extends BaseComponent {
         uniquename: [],
         description: [],
         difficulty: [],
-        frequency: [],
         hints: [],
         solution: [],
-        parameters: []
+        parameters: [],
+        fails: [],
+        success: []
       });
 
       /*
@@ -181,10 +175,11 @@ export class QuestionComponent extends BaseComponent {
             uniquename: question.uniquename,
             description: question.description,
             difficulty: question.difficulty,
-            frequency: question.frequency,
             hints: question.hints,
             parameters: question.parameters,
-            solution: question.solution || ""
+            solution: question.solution || "",
+            fails: question.fails,
+            success: question.success
           });
 
           // add validation later to avoid flash of red message
@@ -210,12 +205,6 @@ export class QuestionComponent extends BaseComponent {
           ]);
           this.baseForm.controls["difficulty"].setValidators([
             Validators.required
-          ]);
-          this.baseForm.controls["frequency"].setValidators([
-            Validators.required,
-            Validators.pattern("[0-9]+"),
-            Validators.min(0),
-            Validators.max(100)
           ]);
           this.selectedValue = question.difficulty;
           //this.htmlContent = question.description;
