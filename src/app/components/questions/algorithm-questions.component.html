@@ -21,7 +21,7 @@
           <app-widget-contextual-label [difficulty]="[question.difficulty]"></app-widget-contextual-label>
         </td>
         <td>
-          <app-widget-frequency-bar [frequency]="[question.frequency]"></app-widget-frequency-bar>
+          <app-widget-frequency-bar [frequency]="freqList[question.sequence-1]"></app-widget-frequency-bar>
         </td>
         <td style="text-align:center">
           <ng-container *ngIf="doneList[question.sequence-1] == 'res'">

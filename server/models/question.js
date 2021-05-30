@@ -8,9 +8,10 @@ var QuestionSchema = new Schema({
   description: { type: String, required: true },
   solution: { type: String },
   difficulty: { type: Number, enum: [10, 20, 30], default: 10 }, // 10: easy, 20: medium, 30: hard
-  frequency: { type: Number, required: true },
   hints: { type: String },
-  parameters: {type: String}
+  parameters: {type: String},
+  fails: {type: Number, default: 0},
+  success:{type: Number, default: 0}
 });
 
 // Export the model

@@ -22,7 +22,7 @@
           <app-widget-contextual-label [difficulty]="[question.difficulty] + ''"></app-widget-contextual-label>
         </td>
         <td>
-          <app-widget-frequency-bar [frequency]="[question.frequency]"></app-widget-frequency-bar>
+          <app-widget-frequency-bar [frequency]="[question.success*100/(question.fails+question.success)]"></app-widget-frequency-bar>
         </td>
         <td>
           <button type="button" class="btn btn-primary" [routerLink]="['/admin/question', question._id ]">Editar</button>
