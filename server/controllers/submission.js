@@ -19,6 +19,7 @@ exports.question_all = function(req, res, next) {
 exports.question_allchecks = function(req, res, next) {
   SleepUtil.sleep();
   Question.find({})
+    .collation({locale: "en", strength: 1})
     .sort({ uniquename: "asc" })
     .exec(function(err, questions) {
       if (err) return next(err);

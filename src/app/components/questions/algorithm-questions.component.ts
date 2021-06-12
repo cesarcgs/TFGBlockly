@@ -96,7 +96,5 @@ export class AlgorithmQuestionsComponent extends BaseComponent {
     }
     console.log(this.doneList);
     console.log(this.freqList);
-    console.log("ey");
-
   }
 }
