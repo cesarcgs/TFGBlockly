@@ -31,8 +31,8 @@
             <li><a routerLink="admin/database">Base de Datos</a></li>
           </ul>
           <ul *ngIf="!auth.isAdmin()" class="dropdown-menu">
-            <li><a routerLink="profile">Profile</a></li>
-            <li><a routerLink="resetpwd">Change Password</a></li>
+            <li><a routerLink="profile">Perfil</a></li>
+            <li><a routerLink="resetpwd">Cambiar Contraseña</a></li>
           </ul>
         </li>
         <li *ngIf="auth.isLoggedIn()">
