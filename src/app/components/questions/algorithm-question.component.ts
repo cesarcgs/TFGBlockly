@@ -362,7 +362,7 @@ export class AlgorithmQuestionComponent extends BaseComponent {
   async ngOnInit() {
     
     let codeBlocklyXml = "";
-    console.log("environment", environment);
+    //console.log("environment", environment);
     this.tab = "description";
     this,this.userResultIntro= "Aquí podrás ver el resultado de tu código para los casos de prueba que aparecen en la descripción";
     this.userResult = "Por favor, entrega una solución válida para ver el resultado";

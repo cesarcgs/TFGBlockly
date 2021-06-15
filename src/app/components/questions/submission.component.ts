@@ -26,7 +26,7 @@ export class SubmissionComponent extends BaseComponent {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get("id");
-    console.log("submission id:", this.id);
+    //console.log("submission id:", this.id);
     if (this.id != null) {
       this.asyncBegin();
       this.submissionService.getSubmissionById(this.id).subscribe(
