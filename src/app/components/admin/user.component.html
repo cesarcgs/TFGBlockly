@@ -12,7 +12,7 @@
     <div class="form-group" [ngClass]="displayFieldCss('username')">
       <label class="control-label col-sm-2 required" for="username">Nombre de Usuario:</label>
       <div class="col-sm-4">
-        <input type="text" class="form-control" name="username" placeholder="Introduce el nombre de usuario" formControlName="username">
+        <input type="text" class="form-control" name="username" placeholder="Introduce el nombre de usuario" formControlName="username" disabled>
         <app-widget-validation-message [displayError]="isFieldValid('username')" errorMsg="Por favor, introduce un nombre de usuario con al menos 3 caracteres">
         </app-widget-validation-message>
       </div>
