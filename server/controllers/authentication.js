@@ -181,7 +181,7 @@ module.exports.update = function(req, res) {
         "body",
         "username",
         upduser.username,
-        "User doesn't exist!"
+        "El usuario no existe!"
       );
       res.status(422).json({ errors: [error] });
     } else {
@@ -203,7 +203,7 @@ module.exports.update = function(req, res) {
             "body",
             "username",
             upduser.username,
-            "Username is existed!"
+            "El usuario ya existe!"
           );
           res.status(422).json({ errors: [error] });
         } else {
@@ -213,7 +213,7 @@ module.exports.update = function(req, res) {
                 "body",
                 "email",
                 upduser.email,
-                "Email is existed!"
+                "Ya existe un usuario con este email!"
               );
               res.status(422).json({ errors: [error] });
             } else {

@@ -11,17 +11,17 @@ router.post(
     // check username
     check("username")
       .isLength({ min: 4 })
-      .withMessage("User name must be at least 4 chars long"),
+      .withMessage("El nombre de usuario debe contener al menos 4 caracteres alfanuméricos"),
     // check password
     check("password")
       .isLength({ min: 6 })
-      .withMessage("Password must be at least 6 chars long")
+      .withMessage("La contraseña debe contener al menos 6 caracteres alfanuméricos")
       .matches(/\d/)
-      .withMessage("Password must contain a number"),
+      .withMessage("La contraseña debe contener al menos un número"),
     // check email
     check("email")
       .isEmail()
-      .withMessage("Email address is invalid")
+      .withMessage("El email no es valido")
   ],
   authentication_controller.signup
 );
@@ -37,12 +37,12 @@ router.post(
     check("username")
       .not()
       .isEmpty()
-      .withMessage("User name can't be empty"),
+      .withMessage("El nombre de usuario no debe estar vacío"),
     // check password
     check("password")
       .not()
       .isEmpty()
-      .withMessage("Password can't be empty")
+      .withMessage("La contraseña no debe estar vacía")
   ],
   authentication_controller.login
 );
@@ -57,15 +57,15 @@ router.post(
     check("_id")
       .not()
       .isEmpty()
-      .withMessage("User Id is empty"),
+      .withMessage("El ID de usuario está vacío"),
     // check username
     check("username")
       .isLength({ min: 4 })
-      .withMessage("User name must be at least 4 chars long"),
+      .withMessage("El nombre de usuario debe contener al menos 4 caracteres alfanuméricos"),
     // check email
     check("email")
       .isEmail()
-      .withMessage("Email address is invalid")
+      .withMessage("El email no es válido")
   ],
   authentication_controller.update
 );
@@ -77,30 +77,30 @@ router.post(
     check("username")
       .not()
       .isEmpty()
-      .withMessage("User name can't be empty"),
+      .withMessage("El nombre de usuario no puede estar vacío"),
     // check current password
     check("password")
       .not()
       .isEmpty()
-      .withMessage("Password can't be empty"),
+      .withMessage("La contraseña no puede estar vacía"),
     // check new password
     check("newpwd")
       .not()
       .isEmpty()
-      .withMessage("New password can't be empty")
+      .withMessage("La nueva contraseña no puede estar vacía")
       .isLength({ min: 6 })
-      .withMessage("Password must be at least 6 chars long")
+      .withMessage("La contraseña debe contener al menos 6 caracteres alfanuméricos")
       .matches(/\d/)
-      .withMessage("Password must contain a number"),
+      .withMessage("La contraseña debe contener al menos un número"),
     // check confirm password
     check("confirmpwd")
       .not()
       .isEmpty()
-      .withMessage("Confirm password can't be empty"),
+      .withMessage("La repetición de la nueva contraseña no debe estar vacía"),
     // check confirm password
     check("confirmpwd").custom((value, { req }) => {
       if (value !== req.body.newpwd) {
-        throw new Error("Confirm password is not same with new password");
+        throw new Error("La repetición de la nueva contraseña no coincide con la nueva contraseña");
       }
       return true;
     })
