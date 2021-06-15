@@ -94,7 +94,7 @@ export class AlgorithmQuestionsComponent extends BaseComponent {
       this.freqList[question.sequence - 1] = 100 * question.success / (question.fails + question.success);
       this.doneList[question.sequence - 1] = estado;
     }
-    console.log(this.doneList);
-    console.log(this.freqList);
+    //console.log(this.doneList);
+    //console.log(this.freqList);
   }
 }

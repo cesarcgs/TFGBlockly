@@ -22,8 +22,13 @@
                 "input": "node_modules/ngx-monaco-editor/assets/monaco",
                 "output": "/assets/monaco"
               },
+              {
+                "glob": "_redirects",
+                "input": "src",
+                "output": "/"
+              },
               "src/assets",
-              "src/favicon.ico"
+              "src/favicon.ico",
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
