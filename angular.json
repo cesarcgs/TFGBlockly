@@ -28,7 +28,7 @@
                 "output": "/"
               },
               "src/assets",
-              "src/favicon.ico",
+              "src/favicon.ico"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
